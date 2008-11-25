@@ -116,6 +116,13 @@ module Sofa
       def ==(obj)
         self.class == obj.class and self._id == obj._id
       end
+
+      def clone
+        hash = @_hash.dup
+        hash.delete('_id')
+        hash.delete('_rev')
+        self.class.new(hash)
+      end
     end
 
     module SingletonMethods
