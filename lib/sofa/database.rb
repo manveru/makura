@@ -185,6 +185,18 @@ module Sofa
       return doc
     end
 
+    def encode_attachments(attachments)
+      attachments.each do |key, value|
+        next if value['stub']
+        value['data'] = base64(value['data'])
+      end
+      attachments
+    end
+
+    def base64(data)
+      [data.to_s].pack('m').delete("\n")
+    end
+
     def inspect
       "#<Sofa::Database '#{@server.uri(name)}'>"
     end
