@@ -2,6 +2,12 @@ module Sofa
   class Server
     attr_accessor :uri
 
+    # Usage:
+    #   server = Sofa::Server.new
+    #   #<URI::HTTP:0xb778ce38 URL:http://localhost:5984>
+    #   server.info
+    #   {"couchdb"=>"Welcome", "version"=>"0.9.0a718650-incubating"}
+
     def initialize(uri = 'http://localhost:5984')
       @uri = URI(uri.to_s)
       @uuids = UUIDCache.new(self)
@@ -13,21 +19,59 @@ module Sofa
 
     # General queries
 
+    # Answers with general couchdb info, looks like:
+    #
+    # Usage:
+    #   server.info
+    #   # {'couchdb' => 'Welcome', 'version' => '0.9.0a718650-incubating'}
     def info
       get('/')
     end
 
+    # Answers with configuration info.
+    #
+    # Usage:
+    #   server.config
+    #
+    def config
+      get('/_config')
+    end
+
+    # Issue restart of the CouchDB daemon.
+    #
+    # Usage:
+    #   server.restart
+    #   # {'ok' => true}
     def restart
       post('/_restart')
     end
 
+    # Array of names of databases on the server
+    #
+    # Usage:
+    #   server.databases
+    #   # ["another", "blog", "sofa-spec"]
     def databases
       get('/_all_dbs')
     end
 
+    # Return new database instance using this server instance.
+    #
+    # Usage:
+    #   foo = server.database('foo')
+    #   # #<Sofa::Database 'http://localhost:5984/foo'>
+    #   server.databases
+    #   # ["another", "blog", "foo", "sofa-spec"]
+
     def database(name)
       Database.new(self, name)
     end
+
+    # Answers with an uuid from the UUIDCache.
+    #
+    # Usage:
+    #   server.next_uuid
+    #   # "55fdca746fa5a5b56f5270875477a2cc"
 
     def next_uuid
       @uuids.next
