@@ -14,7 +14,7 @@ module Sofa
       doc = @database[hash['_id']]
       doc['views'] = hash['views']
       @database.save(doc)
-    rescue RestClient::ResourceNotFound
+    rescue Sofa::Error::ResourceNotFound
       @database.save(to_hash)
     end
 

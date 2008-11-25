@@ -74,11 +74,37 @@ module Sofa
       return raw if keep_raw
       json = JSON.parse(raw)
     rescue RestClient::RequestFailed => ex
-      if body = ex.response.body
-        json = JSON.parse(body)
-        raise(RequestFailed, json.inspect)
+      raise appropriate_error(ex)
+    rescue RestClient::ResourceNotFound => ex
+      raise Error::ResourceNotFound
+    rescue Errno::ECONNREFUSED
+      raise Error::ConnectionRefused, "Is CouchDB running at #{@uri}?"
+    end
+
+    def appropriate_error(exception)
+      body = exception.response.body if exception.respond_to?(:response)
+      backtrace = exception.backtrace
+
+      raise(Error::RequestFailed, exception.message, backtrace) unless body
+
+      json = JSON.parse(body)
+      error, reason = json['error'], json['reason']
+
+      case error
+      when 'bad_request'
+        raise(Error::BadRequest, reason, backtrace)
+      when 'authorization'
+        raise(Error::Authorization, reason, backtrace)
+      when 'not_found'
+        raise(Error::NotFound, reason, backtrace)
+      when 'file_exists'
+        raise(Error::FileExists, reason, backtrace)
+      when 'missing_rev'
+        raise(Error::MissingRevision, reason, backtrace)
+      when 'conflict'
+        raise(Error::Conflict, reason, backtrace)
       else
-        raise(RequestFailed, ex.message)
+        raise(Error::RequestFailed, json.inspect, backtrace)
       end
     end
 
