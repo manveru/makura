@@ -44,10 +44,6 @@ module Sofa
         case hash
         when Sofa::Model
           merge!(hash.to_hash)
-#           relation = self.class.sofa_relation
-#           pp self
-#           pp relation
-#           pp hash
         when Hash
           hash.each{|key, value|
             meth = "#{key}="
@@ -108,7 +104,7 @@ module Sofa
         return self
       end
 
-#         path, file, args = {})
+      # path, file, args = {})
       def attach(*args)
         self.class.database.put_attachment(self, *args)
       end
@@ -177,6 +173,7 @@ module Sofa
         class_eval("
           def #{name}() #{klass}[self[#{name.dump}]] end
           def #{name}=(obj)
+            return unless obj
             raise RuntimeError, 'You many not assign here'
           end")
       end
@@ -209,7 +206,6 @@ module Sofa
 
       def view(name, opts = {})
         hash = database.view("#{self}/#{name}", opts)
-        pp hash
 
         hash['rows'].map! do |row|
           value = row['doc'] || row['value']
