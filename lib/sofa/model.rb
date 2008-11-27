@@ -128,6 +128,16 @@ module Sofa
     module SingletonMethods
       attr_accessor :defaults, :sofa_relation
 
+      def plugin(name)
+        require "sofa/plugin/#{name}".downcase
+
+        name = name.to_s.capitalize
+        mod = Sofa::Plugin.const_get(name)
+
+        include(mod::InstanceMethods) if defined?(mod::InstanceMethods)
+        extend(mod::SingletonMethods) if defined?(mod::SingletonMethods)
+      end
+
       def database=(name)
         @database = Sofa::Model.server.database(name)
       end
