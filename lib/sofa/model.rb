@@ -211,6 +211,17 @@ module Sofa
         design.save
       end
 
+      # It is generally recommended not to include the doc in the emit of the
+      # map function but to use include_docs=true.
+      # To make using this approach more convenient use this method.
+
+      def view_with_docs(name, opts = {})
+        opts.merge!(:include_docs => true, :reduce => false)
+        view(name, opts)
+      end
+
+      alias view_docs view_with_docs
+
       def view(name, opts = {})
         hash = database.view("#{self}/#{name}", opts)
 
