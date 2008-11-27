@@ -1,0 +1,12 @@
+#!/usr/bin/env ruby
+
+require 'rubygems'
+require 'sofa'
+
+Sofa::Model.database = ARGV.shift
+DB = Sofa::Model.database
+
+puts "Your database is assigned to DB"
+
+require 'irb'
+IRB.start
