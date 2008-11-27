@@ -9,14 +9,25 @@ module Sofa
       @options = {}
     end
 
-    def load_map(file)
-      return unless file
-      @map = File.read(File.join('couch/map', "#{file}.js"))
+    def load_map(file_or_function)
+      common_load(:map, file_or_function)
     end
 
-    def load_reduce(file)
-      return unless file
-      @reduce = File.read(File.join('couch/reduce', "#{file}.js"))
+    def load_reduce(file_or_function)
+      common_load(:reduce, file_or_function)
+    end
+
+    def common_load(root, file_or_function)
+      return unless file_or_function
+
+      if file_or_function =~ /function\(.*\)/
+        function = file_or_function
+      else
+        filename = "couch/#{root}/#{file_or_function}.js"
+        function = File.read(filename) if File.file?(filename)
+      end
+
+      instance_variable_set("@#{root}", function) if function
     end
 
     def save
