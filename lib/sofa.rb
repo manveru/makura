@@ -16,6 +16,7 @@ NotNaughty::Validation.load(:presence, :length, :format)
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 require 'sofa/error'
+require 'sofa/http_methods'
 require 'sofa/server'
 require 'sofa/database'
 require 'sofa/uuid_cache'

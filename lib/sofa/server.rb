@@ -1,5 +1,6 @@
 module Sofa
   class Server
+    include HTTPMethods
     attr_accessor :uri
 
     # Usage:
@@ -75,24 +76,6 @@ module Sofa
 
     def next_uuid
       @uuids.next
-    end
-
-    # HTTP Methods
-
-    def delete(path, params = {})
-      request(:delete, path, params)
-    end
-
-    def get(path, params = {})
-      request(:get, path, params)
-    end
-
-    def post(path, params = {})
-      request(:post, path, params)
-    end
-
-    def put(path, params = {})
-      request(:put, path, params)
     end
 
     # Helpers

@@ -1,5 +1,6 @@
 module Sofa
   class Database
+    include HTTPMethods
     attr_accessor :server, :name
 
     # Initialize instance of Database and create if it doesn't exist yet.
@@ -32,7 +33,7 @@ module Sofa
     def create
       info
     rescue Error::ResourceNotFound
-      @server.put("/#{name}", :payload => '')
+      put("/", :payload => '')
     end
 
     # Will delete document in the CouchDB corresponding to given +doc+.
@@ -85,7 +86,7 @@ module Sofa
       doc_id = Sofa.escape(doc_id)
       opts[:rev] ||= doc_rev if doc_rev
 
-      @server.delete("/#{name}/#{doc_id}", opts)
+      request(:delete, doc_id.to_s, opts)
     end
 
     def delete!(doc, opts = {})
@@ -102,7 +103,7 @@ module Sofa
     #   # RestClient::ResourceNotFound: RestClient::ResourceNotFound
 
     def destroy(opts = {})
-      @server.delete(name, opts)
+      request(:delete, '/', opts)
     end
 
     def destroy!(opts = {})
@@ -111,20 +112,20 @@ module Sofa
     end
 
     def info
-      @server.get(name)
+      get('/')
     end
 
     def all_docs(params = {})
-      @server.get("/#{name}/_all_docs")
+      get('_all_docs')
     end
     alias documents all_docs
 
     def [](id, rev = nil)
       id = Sofa.escape(id)
       if rev
-        @server.get("/#{name}/#{id}", :rev => rev)
+        get(id, :rev => rev)
       else
-        @server.get("/#{name}/#{id}")
+        get(id)
       end
     end
 
@@ -134,28 +135,28 @@ module Sofa
       functions[:reduce] = params.delete(:reduce) if params[:reduce]
       params['Content-Type'] = 'application/json'
 
-      @server.post("#{name}/_temp_view", params)
+      post('_temp_view', params)
     end
 
     def view(layout, params = {})
-      @server.get("#{name}/_view/#{layout}", params)
+      get("_view/#{layout}", params)
     end
 
     def save(doc)
       if id = doc['_id']
         id = Sofa.escape(id)
-        @server.put("#{name}/#{id}", :payload => prepare_doc(doc))
+        put(id, :payload => prepare_doc(doc))
       else
         id = doc['_id'] = @server.next_uuid
         id = Sofa.escape(id)
-        @server.put("#{name}/#{id}", :payload => prepare_doc(doc))
+        put(id, :payload => prepare_doc(doc))
       end
     end
 
     # NOTE:
     #   * Seems like we don't even need to check _id, CouchDB will assign it.
     def bulk_docs(docs)
-      @server.post("#{name}/_bulk_docs", :payload => {:docs => docs})
+      post("_bulk_docs", :payload => {:docs => docs})
     end
     alias bulk_save bulk_docs
 
@@ -163,7 +164,7 @@ module Sofa
       doc_id = doc.respond_to?(:_id) ? doc._id : doc.to_str
       file_id, doc_id = Sofa.escape(file_id), Sofa.escape(doc_id)
 
-      @server.get("/#{name}/#{doc_id}/#{file_id}", :raw => true)
+      get("#{doc_id}/#{file_id}", :raw => true)
     end
 
     # PUT an attachment directly to CouchDB
@@ -174,7 +175,7 @@ module Sofa
       options[:raw] = true
       options[:rev] = doc._rev if doc._rev
 
-      @server.put("/#{name}/#{doc_id}/#{file_id}", options)
+      put("#{doc_id}/#{file_id}", options)
     end
 
     def prepare_doc(doc)
@@ -183,6 +184,10 @@ module Sofa
       end
 
       return doc
+    end
+
+    def request(method, path, params = {})
+      @server.send(:request, method, "/#{name}/#{path}", params)
     end
 
     def encode_attachments(attachments)
