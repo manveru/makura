@@ -129,6 +129,11 @@ module Sofa
       end
     end
 
+    def []=(id, doc)
+      id = Sofa.escape(id)
+      put(id, :payload => prepare_doc(doc))
+    end
+
     def temp_view(params = {})
       params[:payload] = functions = {}
       functions[:map] = params.delete(:map) if params[:map]
