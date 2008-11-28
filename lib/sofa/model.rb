@@ -29,6 +29,7 @@ module Sofa
         into.extend(SingletonMethods, NotNaughty)
         into.send(:include, InstanceMethods)
         into.sofa_relation = {:belongs_to => {}, :has_many => {}}
+        into.property_type = {}
         into.defaults = {'type' => into.name}
         into.properties(:_id, :_rev, :type)
       end
@@ -126,7 +127,7 @@ module Sofa
     end
 
     module SingletonMethods
-      attr_accessor :defaults, :sofa_relation
+      attr_accessor :defaults, :sofa_relation, :property_type
 
       def plugin(name)
         require "sofa/plugin/#{name}".downcase
@@ -152,11 +153,26 @@ module Sofa
 
       def property(name, opts = {})
         name = name.to_s
-        defaults[name] = opts.delete(:default) if opts[:default]
+        defaults[name] = default = opts.delete(:default) if opts[:default]
+        property_type[name] = type = opts.delete(:type) if opts[:type]
 
-        class_eval("
-          def #{name}() @_hash[#{name.dump}] end
-          def #{name}=(obj) @_hash[#{name.dump}] = obj end")
+        if type == Time
+          code = "
+            def #{name}()
+              pp @_hash
+              Time.at(@_hash[#{name.dump}].to_i)
+            end
+            def #{name}=(obj)
+              @_hash[#{name.dump}] = obj.to_i
+            end"
+          class_eval(code)
+        else
+          code = "
+            def #{name}() @_hash[#{name.dump}] end
+            def #{name}=(obj) @_hash[#{name.dump}] = obj end"
+        end
+
+        class_eval(code)
       end
 
       def id(name)
