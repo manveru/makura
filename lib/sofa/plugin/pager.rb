@@ -36,8 +36,6 @@ module Sofa
             opts[:startkey] = start_id
           end
 
-          pp opts
-
           @model.view(@view, opts).each(&block)
         end
 

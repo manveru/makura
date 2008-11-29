@@ -159,7 +159,6 @@ module Sofa
         if type == Time
           code = "
             def #{name}()
-              pp @_hash
               Time.at(@_hash[#{name.dump}].to_i)
             end
             def #{name}=(obj)
