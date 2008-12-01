@@ -29,6 +29,7 @@ module Sofa
     def to_hash
       views = {}
       @layouts.each{|name, layout| views[name] = layout.to_hash }
+      views.delete_if{|k,v| !(v[:map] || v['map']) }
 
       {'language' => @language, '_id' => "_design/#{@name}", 'views' => views}
     end
