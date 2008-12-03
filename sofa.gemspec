@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "sofa"
-  s.version = "2008.11.29"
+  s.version = "2008.12.03"
 
   s.summary = "Ruby wrapper around the CouchDB REST API."
   s.description = "Ruby wrapper around the CouchDB REST API."
@@ -41,7 +41,5 @@ Gem::Specification.new do |s|
     "lib/sofa/server.rb",
     "lib/sofa/uuid_cache.rb",
     "sofa.gemspec",
-    "spec/helper.rb",
-    "spec/server.rb"
   ]
 end

@@ -25,7 +25,7 @@ require 'sofa/design'
 require 'sofa/layout'
 
 module Sofa
-  VERSION = '2008.11.29'
+  VERSION = '2008.12.03'
 
   def self.escape(*args)
     Rack::Utils.escape(*args)
