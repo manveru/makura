@@ -1,7 +1,9 @@
 module Sofa
   class Server
     include HTTPMethods
-    attr_accessor :uri
+    attr_accessor :uri, :cache_ttl
+
+    CACHE_TTL = 60
 
     # Usage:
     #   server = Sofa::Server.new
@@ -9,8 +11,9 @@ module Sofa
     #   server.info
     #   {"couchdb"=>"Welcome", "version"=>"0.9.0a718650-incubating"}
 
-    def initialize(uri = 'http://localhost:5984')
+    def initialize(uri = 'http://localhost:5984', cache_ttl = CACHE_TTL)
       @uri = URI(uri.to_s)
+      @cache_ttl = cache_ttl
       @uuids = UUIDCache.new(self)
     end
 
@@ -78,6 +81,32 @@ module Sofa
       @uuids.next
     end
 
+    def start_cache(namespace = 'sofa', *servers)
+      require 'memcache'
+
+      servers << 'localhost:11211' if servers.empty?
+      @cache = MemCache.new(servers, :namespace => namespace, :multithread => true)
+    end
+
+    def stop_cache
+      @cache = nil
+    end
+
+    def cached(request, ttl = cache_ttl)
+      key = request[:url]
+
+      unless response = @cache.get(key)
+        response = execute(request)
+        @cache.add(key, response, ttl)
+      end
+
+      return response
+    rescue MemCache::MemCacheError
+      servers = @cache.servers.map{|s| "#{s.host}:#{s.port}"}
+      start_cache(@cache.namespace, *servers)
+      retry
+    end
+
     # Helpers
 
     def request(method, path, params = {})
@@ -92,12 +121,18 @@ module Sofa
 
       uri = uri(path, params).to_s
 
-      request = {:method => method,
+      request = {
+        :method => method,
         :url => uri,
         :payload => payload,
         :headers => headers}
 
-      raw = RestClient::Request.execute(request)
+      if @cache and request[:method] == :get
+        raw = cached(request)
+      else
+        raw = execute(request)
+      end
+
       return raw if keep_raw
       json = JSON.parse(raw)
     rescue JSON::ParserError
@@ -108,6 +143,10 @@ module Sofa
       raise Error::ResourceNotFound
     rescue Errno::ECONNREFUSED
       raise Error::ConnectionRefused, "Is CouchDB running at #{@uri}?"
+    end
+
+    def execute(request)
+      RestClient::Request.execute(request)
     end
 
     def appropriate_error(exception)
