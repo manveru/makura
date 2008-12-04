@@ -191,7 +191,9 @@ module Sofa
         @sofa_relation[:belongs_to][name] = klass
 
         class_eval("
-          def #{name}() #{klass}[self[#{name.dump}]] end
+          def #{name}()
+            @#{name} ||= #{klass}[self[#{name.dump}]]
+          end
           def #{name}=(obj)
             if obj.respond_to?(:_id)
               @_hash[#{name.dump}] = obj._id
@@ -207,7 +209,9 @@ module Sofa
         @sofa_relation[:has_many][name] = klass
 
         class_eval("
-          def #{name}() #{klass}[self[#{name.dump}]] end
+          def #{name}()
+            @#{name} ||= #{klass}[self[#{name.dump}]]
+          end
           def #{name}=(obj)
             return unless obj
             raise RuntimeError, 'You many not assign here'
