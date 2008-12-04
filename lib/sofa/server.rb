@@ -100,6 +100,8 @@ module Sofa
       raw = RestClient::Request.execute(request)
       return raw if keep_raw
       json = JSON.parse(raw)
+    rescue JSON::ParserError
+      return raw
     rescue RestClient::RequestFailed => ex
       raise appropriate_error(ex)
     rescue RestClient::ResourceNotFound => ex
@@ -113,6 +115,7 @@ module Sofa
       backtrace = exception.backtrace
 
       raise(Error::RequestFailed, exception.message, backtrace) unless body
+      raise(Error::RequestFailed, exception.message, backtrace) if body.empty?
 
       json = JSON.parse(body)
       error, reason = json['error'], json['reason']
