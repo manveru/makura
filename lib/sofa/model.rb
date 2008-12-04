@@ -72,6 +72,10 @@ module Sofa
         @_hash.dup
       end
 
+      def to_json
+        @_hash.to_json
+      end
+
       def inspect
         "#<#{self.class} #{@_hash.inspect}>"
       end
