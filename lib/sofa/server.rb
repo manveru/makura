@@ -3,7 +3,7 @@ module Sofa
     include HTTPMethods
     attr_accessor :uri, :cache_ttl
 
-    CACHE_TTL = 60
+    CACHE_TTL = 5
 
     # Usage:
     #   server = Sofa::Server.new
