@@ -114,6 +114,18 @@ module Sofa
         self.class.database.put_attachment(self, *args)
       end
 
+      # delete attachment by name.
+      # we make sure the parameter is given and a nonempty string to avoid
+      # destroying the document itself
+      def detach(name)
+        name.strip!
+        return if name.empty?
+        self.class.database.request(:delete, "#{_id}/#{name}", :rev => _rev)
+      rescue Sofa::Error::Conflict
+        self['_rev'] = self.class[self._id]['_rev']
+        retry
+      end
+
       def destroy
         self.class.database.delete(_id, :rev => _rev)
       end
