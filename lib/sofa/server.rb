@@ -1,9 +1,11 @@
 module Sofa
   class Server
     include HTTPMethods
-    attr_accessor :uri, :cache_ttl
+    attr_accessor :uri, :cache_ttl, :cache_tries
 
+    COUCHDB_URI = 'http://localhost:5984'
     CACHE_TTL = 5
+    CACHE_TRIES = 2
 
     # Usage:
     #   server = Sofa::Server.new
@@ -11,9 +13,10 @@ module Sofa
     #   server.info
     #   {"couchdb"=>"Welcome", "version"=>"0.9.0a718650-incubating"}
 
-    def initialize(uri = 'http://localhost:5984', cache_ttl = CACHE_TTL)
+    def initialize(uri = COUCHDB_URI, cache_ttl = CACHE_TTL, cache_tries = CACHE_TRIES)
       @uri = URI(uri.to_s)
       @cache_ttl = cache_ttl
+      @cache_tries = cache_tries
       @uuids = UUIDCache.new(self)
     end
 
@@ -82,8 +85,6 @@ module Sofa
     end
 
     def start_cache(namespace = 'sofa', *servers)
-      require 'memcache'
-
       servers << 'localhost:11211' if servers.empty?
       @cache = MemCache.new(servers, :namespace => namespace, :multithread => true)
     end
@@ -92,7 +93,7 @@ module Sofa
       @cache = nil
     end
 
-    def cached(request, ttl = cache_ttl)
+    def cached(request, ttl = cache_ttl, tries = cache_tries)
       key = request[:url]
 
       unless response = @cache.get(key)
@@ -101,10 +102,14 @@ module Sofa
       end
 
       return response
-    rescue MemCache::MemCacheError
+    rescue MemCache::MemCacheError => error
       servers = @cache.servers.map{|s| "#{s.host}:#{s.port}"}
       start_cache(@cache.namespace, *servers)
-      retry
+      tries -= 1
+      retry if tries > 0
+      warn "[sofa caching disabled] #{error.message}"
+      @cache = nil
+      execute(request)
     end
 
     # Helpers
