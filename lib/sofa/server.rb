@@ -124,6 +124,7 @@ module Sofa
         headers['Content-Type'] = content_type
       end
 
+      params.delete_if{|k,v| v.nil? }
       uri = uri(path, params).to_s
 
       request = {
