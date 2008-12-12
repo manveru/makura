@@ -232,7 +232,7 @@ module Sofa
 
       def [](id, rev = nil)
         new(database[id, rev])
-      rescue RestClient::ResourceNotFound
+      rescue Error::ResourceNotFound
         nil
       end
 
