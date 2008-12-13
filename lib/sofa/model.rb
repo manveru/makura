@@ -256,6 +256,61 @@ module Sofa
         design.save
       end
 
+      # +opts+ must include a :keys or 'keys' key with something that responds
+      # to #to_a as value
+      #
+      # Usage given a map named `Post/by_tags' that does something like:
+      #
+      #     for(t in doc.tags){ emit([doc.tags[t]], null); }
+      #
+      # You can use this like:
+      #
+      #     keys = ['ruby', 'couchdb']
+      #     Post.multi_fetch(:by_tags, :keys => keys)
+      #
+      # And it will return all docs with the tags 'ruby' OR 'couchdb'
+      # This can be extended to match even more complex things
+      #
+      #   for(t in doc.tags){ emit([doc.author, doc.tags[t]], null); }
+      #
+      # Now we do
+      #
+      #     keys = [['manveru', 'ruby'], ['mika', 'couchdb']]
+      #     Post.multi_fetch(:by_tags, :keys => keys)
+      #
+      # This will return all docs match following:
+      #     ((author == 'manveru' && tags.include?('ruby')) ||
+      #      (author == 'mika' && tags.include?('couchdb')))
+      #
+      # Of course you can add as many keys as you like:
+      #
+      #     keys = [['manveru', 'ruby'],
+      #             ['manveru', 'couchdb'],
+      #             ['mika', 'design']]
+      #             ['mika', 'couchdb']]
+      #     Post.multi_fetch(:by_tags, :keys => keys)
+      #
+      #
+      # From http://wiki.apache.org/couchdb/HTTP_view_API
+      #   A JSON structure of {"keys": ["key1", "key2", ...]} can be posted to
+      #   any user defined view or _all_docs to retrieve just the view rows
+      #   matching that set of keys. Rows are returned in the order of the keys
+      #   specified. Combining this feature with include_docs=true results in
+      #   the so-called multi-document-fetch feature.
+
+      def multi_fetch(name, opts = {})
+        keys = opts.delete(:keys) || opts.delete('keys')
+        opts.merge!(:payload => {'keys' => keys.to_a})
+        hash = database.post("_view/#{self}/#{name}", opts)
+        convert_raw(hash['rows'])
+      end
+
+      def multi_fetch_with_docs(name, opts = {})
+        opts.merge!(:include_docs => true, :reduce => false)
+        multi_fetch(name, opts)
+      end
+      alias multi_document_fetch multi_fetch_with_docs
+
       # It is generally recommended not to include the doc in the emit of the
       # map function but to use include_docs=true.
       # To make using this approach more convenient use this method.
@@ -268,13 +323,18 @@ module Sofa
       alias view_docs view_with_docs
 
       def view(name, opts = {})
+        flat = opts.delete(:flat)
         hash = database.view("#{self}/#{name}", opts)
 
-        hash['rows'].map! do |row|
+        convert_raw(hash['rows'], flat)
+      end
+
+      def convert_raw(rows, flat = false)
+        rows.map do |row|
           value = row['doc'] || row['value']
 
           if value.respond_to?(:to_hash)
-            if type = value['type']
+            if type = value['type'] and not flat
               const_get(type).new(value)
             else
               row
