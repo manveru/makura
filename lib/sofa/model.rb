@@ -134,6 +134,14 @@ module Sofa
         self.class == obj.class and self._id == obj._id
       end
 
+      def hash
+        @_hash.hash
+      end
+
+      def eql?(other)
+        other == self && other.hash == self.hash
+      end
+
       def clone
         hash = @_hash.dup
         hash.delete('_id')
