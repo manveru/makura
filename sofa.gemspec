@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "sofa"
-  s.version = "2008.12.03"
+  s.version = "2008.12.15"
 
   s.summary = "Ruby wrapper around the CouchDB REST API."
   s.description = "Ruby wrapper around the CouchDB REST API."
@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
 
   s.add_dependency('rack', '>= 0.4.0')
-  s.add_dependency('not-naughty', '>= 0.6.2')
   s.add_dependency('rest-client', '>= 0.8.1')
   s.add_dependency('json', '>= 1.1.3')
 
