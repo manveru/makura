@@ -6,12 +6,9 @@ begin
 rescue LoadError
 end
 
-require 'not_naughty'
 require 'rest_client'
 require 'rack'
 require 'json'
-
-NotNaughty::Validation.load(:presence, :length, :format)
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 

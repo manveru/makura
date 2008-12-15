@@ -8,18 +8,20 @@ original API as possible, while taking advantage of Ruby's expressive power.
 Most ideas for this have been gathered while trying other libraries such as
 CouchObject, CouchRest, and RelaxDB.
 
-It does so with almost[1] no modification of ruby libraries and makes it simple
+It does so with almost no modification of ruby libraries and makes it simple
 to switch the HTTP library used by changing one method.
 Eventually Sofa will be using an evented http library to provide better
 performance.
 
-[1]: We are using NotNaughty for validation, which does add the #blank? method.
+We are using the json library, which adds following methods:
+To Kernel: #j, #jj, #JSON
+To Object and most core classes: #to_json
+To String: #to_json_raw_object, #to_json, #to_json_raw
 
 ## Dependencies
 
-* CouchDB - 0.9 trunk
+* CouchDB - 0.9 trunk (rev 725909 and higher)
 * rest-client
-* not_naughty
 * rack
 * json
 
