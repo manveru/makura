@@ -160,7 +160,9 @@ module Sofa
 
     # NOTE:
     #   * Seems like we don't even need to check _id, CouchDB will assign it.
+    #     But in order to use our own uuids we still do it.
     def bulk_docs(docs)
+      docs.each{|doc| doc['_id'] ||= @server.next_uuid }
       post("_bulk_docs", :payload => {:docs => docs})
     end
     alias bulk_save bulk_docs

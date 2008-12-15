@@ -26,8 +26,30 @@ require 'sofa/layout'
 
 module Sofa
   VERSION = '2008.12.03'
+  CHARS = (48..128).map{|c| c.chr}.grep(/[[:alnum:]]/)
+  MOD = CHARS.size
 
-  def self.escape(*args)
+  module_function
+
+  def escape(*args)
     Rack::Utils.escape(*args)
+  end
+
+  def pretty_from_md5(md5)
+    id = md5.to_i(16)
+    o = []
+    while id > 0
+      id, r = id.divmod(MOD)
+      o.unshift CHARS[r]
+    end
+    o.join
+  end
+
+  def pretty_to_md5(id)
+    i = 0
+    id.scan(/./) do |c|
+      i = i * MOD + CHARS.index(c)
+    end
+    i.to_s(16)
   end
 end
