@@ -15,7 +15,7 @@ class UUIDCache
     todo = max - @uuids.size
     count = [min, todo, max].sort[1]
     uuids = @server.post('/_uuids', :count => count)['uuids']
-    uuids.map!{|u| pretty_from_md5(u) } if pretty
+    uuids.map!{|u| Sofa.pretty_from_md5(u) } if pretty
     @uuids.concat(uuids)
   end
 end
