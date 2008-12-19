@@ -146,7 +146,7 @@ module Sofa
     rescue RestClient::RequestFailed => ex
       raise appropriate_error(ex)
     rescue RestClient::ResourceNotFound => ex
-      raise Error::ResourceNotFound
+      raise Error::ResourceNotFound, request[:url], ex.backtrace
     rescue Errno::ECONNREFUSED
       raise Error::ConnectionRefused, "Is CouchDB running at #{@uri}?"
     end
