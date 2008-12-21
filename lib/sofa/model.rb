@@ -251,13 +251,25 @@ module Sofa
       def layout(name, opts = {})
         design[name] = layout = Layout.new(name, design)
 
-        map_name = opts[:map] || "#{self.name}_#{name}".downcase
-        layout.load_map(map_name)
-
+        map_name    = opts[:map]    || "#{self.name}_#{name}".downcase
         reduce_name = opts[:reduce] || "#{self.name}_#{name}".downcase
-        layout.load_reduce(opts[:reduce])
 
-        layout
+        layout.load_map(map_name)
+        layout.load_reduce(reduce_name)
+
+        return layout
+      end
+
+      def proto_layout(common, name, opts = {})
+        design[name] = layout = Layout.new(name, design)
+
+        map_name    = opts.delete(:map)    || "#{self.name}_#{common}".downcase
+        reduce_name = opts.delete(:reduce) || "#{self.name}_#{common}".downcase
+
+        layout.load_proto_map(map_name, opts)
+        layout.load_proto_reduce(reduce_name, opts)
+
+        return layout
       end
 
       def save

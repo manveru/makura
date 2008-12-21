@@ -9,6 +9,18 @@ module Sofa
       @options = {}
     end
 
+    def load_proto_map(file_or_function, replace = {})
+      return unless common_load(:proto_map, file_or_function)
+      replace.each{|from, to| @proto_map.gsub!(/"\{\{#{from}\}\}"/, to) }
+      @map = @proto_map
+    end
+
+    def load_proto_reduce(file_or_function, replace = {})
+      return unless common_load(:proto_reduce, file_or_function)
+      replace.each{|from, to| @proto_reduce.gsub!(/"\{\{#{from}\}\}"/, to) }
+      @reduce = @proto_reduce
+    end
+
     def load_map(file_or_function)
       common_load(:map, file_or_function)
     end
