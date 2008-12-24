@@ -9,7 +9,14 @@ end
 require 'rest_client'
 require 'json'
 
-$LOAD_PATH.unshift(File.dirname(__FILE__))
+module Sofa
+  VERSION = '2008.12.24'
+  ROOT = File.expand_path(File.dirname(__FILE__))
+end
+
+unless $LOAD_PATH.any?{|lp| File.expand_path(lp) == Sofa::ROOT }
+  $LOAD_PATH.unshift(Sofa::ROOT)
+end
 
 require 'sofa/error'
 require 'sofa/http_methods'
