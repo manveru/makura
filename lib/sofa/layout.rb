@@ -2,6 +2,11 @@ module Sofa
   class Layout
     attr_accessor :design, :name, :map, :reduce
 
+    PATH = [
+      './couch',
+      File.join(Sofa::ROOT, '../couch')
+    ]
+
     def initialize(name, design = nil)
       @name, @design = name, design
       @design[name] = self
@@ -35,8 +40,11 @@ module Sofa
       if file_or_function =~ /function\(.*\)/
         function = file_or_function
       else
-        filename = "couch/#{root}/#{file_or_function}.js"
-        function = File.read(filename) if File.file?(filename)
+        filename = "#{root}/#{file_or_function}.js"
+
+        if pathname = PATH.find{|pa| File.file?(File.join(pa, filename)) }
+          function = File.read(File.join(pathname, filename))
+        end
       end
 
       instance_variable_set("@#{root}", function) if function
