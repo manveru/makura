@@ -185,25 +185,12 @@ module Sofa
 
     JSON_PARAMS = %w[key startkey endkey]
 
-    # NOTE:
-    #   * Currently there's a CouchDB bug that makes the query:
-    #       ?include_docs=true&reduce=false
-    #     fail, but the query:
-    #       ?reduce=false&include_docs=true
-    #     works.
-    #     So we take special care of this.
-
     def paramify(hash)
-      if hash.key?(:reduce) || hash.key?('reduce')
-        reduce = !!(hash.delete(:reduce) || hash.delete('reduce'))
-        ["reduce=#{reduce.inspect}", paramify(hash)].join('&')
-      else
-        hash.map{|k,v|
-          k = k.to_s
-          v = v.to_json if JSON_PARAMS.include?(k)
-          "#{Rack::Utils.escape(k)}=#{Rack::Utils.escape(v)}"
-        }.join('&')
-      end
+      hash.map{|k,v|
+        k = k.to_s
+        v = v.to_json if JSON_PARAMS.include?(k)
+        "#{Sofa.escape(k)}=#{Sofa.escape(v)}"
+      }.join('&')
     end
 
     def uri(path = '/', params = {})

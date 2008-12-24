@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
   s.bindir = "bin"
   s.require_path = "lib"
 
-  s.add_dependency('rack', '>= 0.4.0')
   s.add_dependency('rest-client', '>= 0.8.1')
   s.add_dependency('json', '>= 1.1.3')
 

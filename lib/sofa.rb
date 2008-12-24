@@ -7,7 +7,6 @@ rescue LoadError
 end
 
 require 'rest_client'
-require 'rack'
 require 'json'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
@@ -22,14 +21,16 @@ require 'sofa/design'
 require 'sofa/layout'
 
 module Sofa
-  VERSION = '2008.12.03'
   CHARS = (48..128).map{|c| c.chr}.grep(/[[:alnum:]]/)
   MOD = CHARS.size
 
   module_function
 
-  def escape(*args)
-    Rack::Utils.escape(*args)
+  # From Rack
+  def escape(s)
+    s.to_s.gsub(/([^ a-zA-Z0-9_.-]+)/n) {
+      '%'+$1.unpack('H2'*$1.size).join('%').upcase
+    }.tr(' ', '+')
   end
 
   def pretty_from_md5(md5)
