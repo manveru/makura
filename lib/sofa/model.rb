@@ -26,7 +26,7 @@ module Sofa
       end
 
       def included(into)
-        into.extend(SingletonMethods, NotNaughty)
+        into.extend(SingletonMethods)
         into.send(:include, InstanceMethods)
         into.sofa_relation = {:belongs_to => {}, :has_many => {}}
         into.property_type = {}
@@ -89,7 +89,8 @@ module Sofa
       end
 
       def save
-        return if not valid? or saved?
+        return if not valid? if respond_to?(:valid)
+        return if saved?
         save!
       end
 
