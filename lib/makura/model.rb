@@ -1,6 +1,6 @@
-module Sofa
+module Makura
   module Model
-    KEY = 'sofa_type'
+    KEY = 'makura_type'
 
     class << self
       attr_reader :server, :database
@@ -11,10 +11,10 @@ module Sofa
 
       def server=(obj)
         case obj
-        when Sofa::Server
+        when Makura::Server
           @server = obj
         when String, URI
-          @server = Sofa::Server.new(uri)
+          @server = Makura::Server.new(uri)
         else
           raise ArgumentError
         end
@@ -22,13 +22,13 @@ module Sofa
 
       def server
         return @server if @server
-        self.server = Sofa::Server.new
+        self.server = Makura::Server.new
       end
 
       def included(into)
         into.extend(SingletonMethods)
         into.send(:include, InstanceMethods)
-        into.sofa_relation = {:belongs_to => {}, :has_many => {}}
+        into.makura_relation = {:belongs_to => {}, :has_many => {}}
         into.property_type = {}
         into.defaults = {'type' => into.name}
         into.properties(:_id, :_rev, :type)
@@ -43,7 +43,7 @@ module Sofa
 
       def merge!(hash)
         case hash
-        when Sofa::Model
+        when Makura::Model
           merge!(hash.to_hash)
         when Hash
           hash.each{|key, value|
@@ -97,7 +97,7 @@ module Sofa
       def save!
         hash = self.to_hash
 
-        self.class.sofa_relation.each do |kind, relation_hash|
+        self.class.makura_relation.each do |kind, relation_hash|
           relation_hash.each do |key, value|
             hash[key.to_s] = hash[key.to_s] #._id
           end
@@ -122,7 +122,7 @@ module Sofa
         name.strip!
         return if name.empty?
         self.class.database.request(:delete, "#{_id}/#{name}", :rev => _rev)
-      rescue Sofa::Error::Conflict
+      rescue Makura::Error::Conflict
         self['_rev'] = self.class[self._id]['_rev']
         retry
       end
@@ -152,24 +152,24 @@ module Sofa
     end
 
     module SingletonMethods
-      attr_accessor :defaults, :sofa_relation, :property_type
+      attr_accessor :defaults, :makura_relation, :property_type
 
       def plugin(name)
-        require "sofa/plugin/#{name}".downcase
+        require "makura/plugin/#{name}".downcase
 
         name = name.to_s.capitalize
-        mod = Sofa::Plugin.const_get(name)
+        mod = Makura::Plugin.const_get(name)
 
         include(mod::InstanceMethods) if defined?(mod::InstanceMethods)
         extend(mod::SingletonMethods) if defined?(mod::SingletonMethods)
       end
 
       def database=(name)
-        @database = Sofa::Model.server.database(name)
+        @database = Makura::Model.server.database(name)
       end
 
       def database
-        @database || Sofa::Model.database
+        @database || Makura::Model.database
       end
 
       def properties(*names)
@@ -209,7 +209,7 @@ module Sofa
       def belongs_to(name, model = nil)
         name = name.to_s
         klass = (model || name.capitalize).to_s
-        @sofa_relation[:belongs_to][name] = klass
+        @makura_relation[:belongs_to][name] = klass
 
         class_eval("
           def #{name}()
@@ -227,7 +227,7 @@ module Sofa
       def has_many(name, model = nil)
         name = name.to_s
         klass = (model || name.capitalize).to_s
-        @sofa_relation[:has_many][name] = klass
+        @makura_relation[:has_many][name] = klass
 
         class_eval("
           def #{name}()

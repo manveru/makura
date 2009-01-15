@@ -1,9 +1,9 @@
-module Sofa
+module Makura
   module Plugin
     module Pager
       module SingletonMethods
         def pager(page, limit)
-          Sofa::Plugin::Pager::Pagination.new(self, :pager, page, limit)
+          Makura::Plugin::Pager::Pagination.new(self, :pager, page, limit)
         end
       end
 

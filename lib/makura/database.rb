@@ -1,4 +1,4 @@
-module Sofa
+module Makura
   class Database
     include HTTPMethods
     attr_accessor :server, :name
@@ -7,10 +7,10 @@ module Sofa
     # To prevent automatic creation, pass false as 3rd parameter
     #
     # Usage:
-    #   server = Sofa::Server.new
+    #   server = Makura::Server.new
     #   # #<URI::HTTP:0xb7788234 URL:http://localhost:5984>
-    #   database = Sofa::Database.new(server, 'foo')
-    #   # #<Sofa::Database 'http://localhost:5984/foo'>
+    #   database = Makura::Database.new(server, 'foo')
+    #   # #<Makura::Database 'http://localhost:5984/foo'>
 
     def initialize(server, name, auto_create = true)
       @server, @name = server, name
@@ -20,11 +20,11 @@ module Sofa
     # Create the database if it doesn't exist already.
     #
     # Usage:
-    #   server = Sofa::Server.new
+    #   server = Makura::Server.new
     #   # #<URI::HTTP:0xb76a4a98 URL:http://localhost:5984>
     #
-    #   database = Sofa::Database.new(server, 'foo', false)
-    #   # #<Sofa::Database 'http://localhost:5984/foo'>
+    #   database = Makura::Database.new(server, 'foo', false)
+    #   # #<Makura::Database 'http://localhost:5984/foo'>
     #
     #   database.create
     #   # {"update_seq"=>0, "doc_count"=>0, "purge_seq"=>0, "disk_size"=>4096,
@@ -40,7 +40,7 @@ module Sofa
     # Use #destroy to delete the database itself.
     # Use #delete! to automatically rescue exceptions on conflicts.
     #
-    # Possible variations (User is a Sofa::Model) are:
+    # Possible variations (User is a Makura::Model) are:
     #
     #   # deleting based on explicit _id and :rev option.
     #   database.delete('manveru', :rev => 123134)
@@ -68,11 +68,11 @@ module Sofa
     #   RestClient::ResourceNotFound: RestClient::ResourceNotFound
     #
     #   database.delete(doc['id'], :rev => doc['rev'])
-    #   Sofa::RequestFailed: {"reason"=>"Document update conflict.", "error"=>"conflict"}
+    #   Makura::RequestFailed: {"reason"=>"Document update conflict.", "error"=>"conflict"}
 
     def delete(doc, opts = {})
       case doc
-      when Sofa::Model
+      when Makura::Model
         doc_id, doc_rev = doc._id, doc._rev
       when Hash
         doc_id  = doc['_id']  || doc['id']  || doc[:_id]  || doc[:id]
@@ -83,7 +83,7 @@ module Sofa
 
       raise(ArgumentError, "document _id wasn't passed") unless doc_id
 
-      doc_id = Sofa.escape(doc_id)
+      doc_id = Makura.escape(doc_id)
       opts[:rev] ||= doc_rev if doc_rev
 
       request(:delete, doc_id.to_s, opts)
@@ -121,7 +121,7 @@ module Sofa
     alias documents all_docs
 
     def [](id, rev = nil)
-      id = Sofa.escape(id)
+      id = Makura.escape(id)
       if rev
         get(id, :rev => rev)
       else
@@ -130,7 +130,7 @@ module Sofa
     end
 
     def []=(id, doc)
-      id = Sofa.escape(id)
+      id = Makura.escape(id)
       put(id, :payload => prepare_doc(doc))
     end
 
@@ -149,11 +149,11 @@ module Sofa
 
     def save(doc)
       if id = doc['_id']
-        id = Sofa.escape(id)
+        id = Makura.escape(id)
         put(id, :payload => prepare_doc(doc))
       else
         id = doc['_id'] = @server.next_uuid
-        id = Sofa.escape(id)
+        id = Makura.escape(id)
         put(id, :payload => prepare_doc(doc))
       end
     end
@@ -169,14 +169,14 @@ module Sofa
 
     def get_attachment(doc, file_id)
       doc_id = doc.respond_to?(:_id) ? doc._id : doc.to_str
-      file_id, doc_id = Sofa.escape(file_id), Sofa.escape(doc_id)
+      file_id, doc_id = Makura.escape(file_id), Makura.escape(doc_id)
 
       get("#{doc_id}/#{file_id}", :raw => true)
     end
 
     # PUT an attachment directly to CouchDB
     def put_attachment(doc, file_id, file, options = {})
-      doc_id, file_id = Sofa.escape(doc._id), Sofa.escape(file_id)
+      doc_id, file_id = Makura.escape(doc._id), Makura.escape(file_id)
 
       options[:payload] = file
       options[:raw] = true
@@ -210,7 +210,7 @@ module Sofa
     end
 
     def inspect
-      "#<Sofa::Database '#{@server.uri(name)}'>"
+      "#<Makura::Database '#{@server.uri(name)}'>"
     end
   end
 end

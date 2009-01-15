@@ -1,12 +1,12 @@
-require 'sofa'
+require 'makura'
 
 # Setting up everything
 
-# Sofa::Model.server = 'http://localhost:5984'
-Sofa::Model.database = 'mydb'
+# Makura::Model.server = 'http://localhost:5984'
+Makura::Model.database = 'mydb'
 
 class Post
-  include Sofa::Model
+  include Makura::Model
 
   properties :title, :text, :tags
   belongs_to :author
@@ -20,7 +20,7 @@ class Post
 end
 
 class Author
-  include Sofa::Model
+  include Makura::Model
 
   property :name
 
@@ -31,7 +31,7 @@ class Author
 end
 
 class Comment
-  include Sofa::Model
+  include Makura::Model
 
   property :text
 end

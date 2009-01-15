@@ -9,25 +9,25 @@ end
 require 'rest_client'
 require 'json'
 
-module Sofa
-  VERSION = '2008.12.24'
+module Makura
+  VERSION = '2008.01.15'
   ROOT = File.expand_path(File.dirname(__FILE__))
 end
 
-unless $LOAD_PATH.any?{|lp| File.expand_path(lp) == Sofa::ROOT }
-  $LOAD_PATH.unshift(Sofa::ROOT)
+unless $LOAD_PATH.any?{|lp| File.expand_path(lp) == Makura::ROOT }
+  $LOAD_PATH.unshift(Makura::ROOT)
 end
 
-require 'sofa/error'
-require 'sofa/http_methods'
-require 'sofa/server'
-require 'sofa/database'
-require 'sofa/uuid_cache'
-require 'sofa/model'
-require 'sofa/design'
-require 'sofa/layout'
+require 'makura/error'
+require 'makura/http_methods'
+require 'makura/server'
+require 'makura/database'
+require 'makura/uuid_cache'
+require 'makura/model'
+require 'makura/design'
+require 'makura/layout'
 
-module Sofa
+module Makura
   CHARS = (48..128).map{|c| c.chr}.grep(/[[:alnum:]]/)
   MOD = CHARS.size
 
@@ -58,3 +58,5 @@ module Sofa
     i.to_s(16)
   end
 end
+
+Sofa = Makura # be backwards compatible

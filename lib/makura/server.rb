@@ -1,4 +1,4 @@
-module Sofa
+module Makura
   class Server
     include HTTPMethods
     attr_accessor :uri, :cache_ttl, :cache_tries
@@ -8,7 +8,7 @@ module Sofa
     CACHE_TRIES = 2
 
     # Usage:
-    #   server = Sofa::Server.new
+    #   server = Makura::Server.new
     #   #<URI::HTTP:0xb778ce38 URL:http://localhost:5984>
     #   server.info
     #   {"couchdb"=>"Welcome", "version"=>"0.9.0a718650-incubating"}
@@ -57,7 +57,7 @@ module Sofa
     #
     # Usage:
     #   server.databases
-    #   # ["another", "blog", "sofa-spec"]
+    #   # ["another", "blog", "makura-spec"]
     def databases
       get('/_all_dbs')
     end
@@ -66,9 +66,9 @@ module Sofa
     #
     # Usage:
     #   foo = server.database('foo')
-    #   # #<Sofa::Database 'http://localhost:5984/foo'>
+    #   # #<Makura::Database 'http://localhost:5984/foo'>
     #   server.databases
-    #   # ["another", "blog", "foo", "sofa-spec"]
+    #   # ["another", "blog", "foo", "makura-spec"]
 
     def database(name)
       Database.new(self, name)
@@ -84,7 +84,7 @@ module Sofa
       @uuids.next
     end
 
-    def start_cache(namespace = 'sofa', *servers)
+    def start_cache(namespace = 'makura', *servers)
       servers << 'localhost:11211' if servers.empty?
       @cache = MemCache.new(servers, :namespace => namespace, :multithread => true)
     end
@@ -107,7 +107,7 @@ module Sofa
       start_cache(@cache.namespace, *servers)
       tries -= 1
       retry if tries > 0
-      warn "[sofa caching disabled] #{error.message}"
+      warn "[makura caching disabled] #{error.message}"
       @cache = nil
       execute(request)
     end
@@ -189,7 +189,7 @@ module Sofa
       hash.map{|k,v|
         k = k.to_s
         v = v.to_json if JSON_PARAMS.include?(k)
-        "#{Sofa.escape(k)}=#{Sofa.escape(v)}"
+        "#{Makura.escape(k)}=#{Makura.escape(v)}"
       }.join('&')
     end
 

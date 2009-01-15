@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
-  s.name = "sofa"
-  s.version = "2008.12.24"
+  s.name = "makura"
+  s.version = "2008.01.15"
 
   s.summary = "Ruby wrapper around the CouchDB REST API."
   s.description = "Ruby wrapper around the CouchDB REST API."
@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.has_rdoc = true
   s.author = "Michael 'manveru' Fellinger"
   s.email = "m.fellinger@gmail.com"
-  s.homepage = "http://github.com/manveru/sofa"
-  s.executables = ['sofa']
+  s.homepage = "http://github.com/manveru/makura"
+  s.executables = ['makura']
   s.bindir = "bin"
   s.require_path = "lib"
 
@@ -19,23 +19,23 @@ Gem::Specification.new do |s|
   s.files = [
     "COPYING",
     "README.md",
-    "bin/sofa",
+    "bin/makura",
     "example/blog.rb",
     "example/couch/map/author_all.js",
     "example/couch/map/author_posts.js",
     "example/couch/map/post_all.js",
     "example/couch/map/post_comments.js",
     "example/couch/reduce/sum_length.js",
-    "lib/sofa/database.rb",
-    "lib/sofa/design.rb",
-    "lib/sofa/error.rb",
-    "lib/sofa/http_methods.rb",
-    "lib/sofa/layout.rb",
-    "lib/sofa/model.rb",
-    "lib/sofa/plugin/pager.rb",
-    "lib/sofa/server.rb",
-    "lib/sofa/uuid_cache.rb",
-    "lib/sofa.rb",
-    "sofa.gemspec"
+    "lib/makura/database.rb",
+    "lib/makura/design.rb",
+    "lib/makura/error.rb",
+    "lib/makura/http_methods.rb",
+    "lib/makura/layout.rb",
+    "lib/makura/model.rb",
+    "lib/makura/plugin/pager.rb",
+    "lib/makura/server.rb",
+    "lib/makura/uuid_cache.rb",
+    "lib/makura.rb",
+    "makura.gemspec"
   ]
 end

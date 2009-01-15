@@ -1,4 +1,4 @@
-module Sofa
+module Makura
   class Design
     attr_accessor :database, :name, :language
     attr_reader :layouts
@@ -14,7 +14,7 @@ module Sofa
       doc = @database[hash['_id']]
       doc['views'] = hash['views']
       @database.save(doc)
-    rescue Sofa::Error::ResourceNotFound
+    rescue Makura::Error::ResourceNotFound
       @database.save(to_hash)
     end
 

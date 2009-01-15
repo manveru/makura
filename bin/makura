@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'sofa'
+require 'makura'
 
-Sofa::Model.database = ARGV.shift
-DB = Sofa::Model.database
+Makura::Model.database = ARGV.shift
+DB = Makura::Model.database
 
 puts "Your database is assigned to DB"
 

@@ -1,4 +1,4 @@
-module Sofa
+module Makura
   # Mother and namespace of all exceptions
   class Error < ::RuntimeError
     class ConnectionRefused < Error; end

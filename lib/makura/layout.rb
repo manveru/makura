@@ -1,10 +1,10 @@
-module Sofa
+module Makura
   class Layout
     attr_accessor :design, :name, :map, :reduce
 
     PATH = [
       './couch',
-      File.join(Sofa::ROOT, '../couch')
+      File.join(Makura::ROOT, '../couch')
     ]
 
     def initialize(name, design = nil)
@@ -56,7 +56,7 @@ module Sofa
     end
 
     def to_hash
-      {:map => @map, :reduce => @reduce, :sofa_options => @options}
+      {:map => @map, :reduce => @reduce, :makura_options => @options}
     end
   end
 end

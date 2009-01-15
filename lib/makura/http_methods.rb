@@ -1,4 +1,4 @@
-module Sofa
+module Makura
   module HTTPMethods
     def delete(path, params = {})
       request(:delete, path, params)
