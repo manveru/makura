@@ -15,7 +15,7 @@ module Makura
     def fetch(count = 0)
       todo = max - @uuids.size
       count = [min, todo, max].sort[1]
-      uuids = @server.post('/_uuids', :count => count)['uuids']
+      uuids = @server.get('/_uuids', :count => count)['uuids']
       uuids.map!{|u| Makura.pretty_from_md5(u) } if pretty
       @uuids.concat(uuids)
     end

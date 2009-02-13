@@ -14,7 +14,7 @@ module Makura
         when Makura::Server
           @server = obj
         when String, URI
-          @server = Makura::Server.new(uri)
+          @server = Makura::Server.new(obj)
         else
           raise ArgumentError
         end
