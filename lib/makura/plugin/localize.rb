@@ -20,10 +20,22 @@ end'.strip
             class_eval(LOCALIZE_SET % [key, key])
           end
         end
+
+        def default_language=(dl)
+          @default_language = dl
+        end
+
+        def default_language
+          @default_language ||= 'en'
+        end
       end
 
       module InstanceMethods
-        attr_accessor :language
+        attr_writer :language
+
+        def language
+          @language || self.class.default_language
+        end
       end
     end
   end
