@@ -27,22 +27,23 @@ module Makura
     #   page.title # => 'english title'
     module Localize
       LOCALIZE_GET = '
-def %s
+def %key%
   raise(ArgumentError, "No language set") unless language
-  self["%s_#{language}"]
+  self["%key%_#{language}"] || self["%key%_#{self.class.default_language}"]
 end'.strip
 
       LOCALIZE_SET = '
-def %s=(data)
+def %key%=(data)
   raise(ArgumentError, "No language set") unless language
-  self["%s_#{language}"] = data
+  self["%key%_#{language}"] = data
 end'.strip
 
       module SingletonMethods
         def localized(*keys)
           keys.each do |key|
-            class_eval(LOCALIZE_GET % [key, key])
-            class_eval(LOCALIZE_SET % [key, key])
+            key = key.to_s
+            class_eval(LOCALIZE_GET.gsub('%key%', key))
+            class_eval(LOCALIZE_SET.gsub('%key%', key))
           end
         end
 
