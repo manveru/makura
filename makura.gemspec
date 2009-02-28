@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "makura"
-  s.version = "2009.02.18"
+  s.version = "2009.03.01"
 
   s.summary = "Ruby wrapper around the CouchDB REST API."
   s.description = "Ruby wrapper around the CouchDB REST API."
@@ -26,16 +26,17 @@ Gem::Specification.new do |s|
     "example/couch/map/post_all.js",
     "example/couch/map/post_comments.js",
     "example/couch/reduce/sum_length.js",
+    "lib/makura.rb",
     "lib/makura/database.rb",
     "lib/makura/design.rb",
     "lib/makura/error.rb",
     "lib/makura/http_methods.rb",
     "lib/makura/layout.rb",
     "lib/makura/model.rb",
+    "lib/makura/plugin/localize.rb",
     "lib/makura/plugin/pager.rb",
     "lib/makura/server.rb",
     "lib/makura/uuid_cache.rb",
-    "lib/makura.rb",
     "makura.gemspec"
   ]
 end
