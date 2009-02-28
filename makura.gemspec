@@ -14,7 +14,6 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
 
   s.add_dependency('rest-client', '>= 0.8.1')
-  s.add_dependency('json', '>= 1.1.3')
 
   s.files = [
     "COPYING",
