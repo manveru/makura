@@ -210,7 +210,7 @@ module Makura
     end
 
     def inspect
-      "#<Makura::Database '#{@server.uri(name)}'>"
+      "#<Makura::Database '#{@server.uri(name || '/')}'>"
     end
   end
 end
