@@ -1,41 +1,33 @@
+# -*- encoding: utf-8 -*-
+
 Gem::Specification.new do |s|
-  s.name = "makura"
-  s.version = "2009.03.21"
+  s.name = %q{makura}
+  s.version = "2009.03.28"
 
-  s.summary = "Ruby wrapper around the CouchDB REST API."
-  s.description = "Ruby wrapper around the CouchDB REST API."
-  s.platform = "ruby"
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.authors = ["Michael 'manveru' Fellinger"]
+  s.date = %q{2009-03-28}
+  s.default_executable = %q{makura}
+  s.description = %q{Ruby wrapper around the CouchDB REST API.}
+  s.email = %q{m.fellinger@gmail.com}
+  s.executables = ["makura"]
+  s.files = ["COPYING", "README.md", "Rakefile", "bin/makura", "example/blog.rb", "example/couch/map/author_all.js", "example/couch/map/author_posts.js", "example/couch/map/post_all.js", "example/couch/map/post_comments.js", "example/couch/reduce/sum_length.js", "lib/makura.rb", "lib/makura/database.rb", "lib/makura/design.rb", "lib/makura/error.rb", "lib/makura/http_methods.rb", "lib/makura/layout.rb", "lib/makura/model.rb", "lib/makura/plugin/localize.rb", "lib/makura/plugin/pager.rb", "lib/makura/server.rb", "lib/makura/uuid_cache.rb", "lib/makura/version.rb", "makura.gemspec", "tasks/bacon.rake", "tasks/changelog.rake", "tasks/gem.rake", "tasks/gem_installer.rake", "tasks/grancher.rake", "tasks/install_dependencies.rake", "tasks/manifest.rake", "tasks/rcov.rake", "tasks/release.rake", "tasks/reversion.rake"]
   s.has_rdoc = true
-  s.author = "Michael 'manveru' Fellinger"
-  s.email = "m.fellinger@gmail.com"
-  s.homepage = "http://github.com/manveru/makura"
-  s.executables = ['makura']
-  s.bindir = "bin"
-  s.require_path = "lib"
+  s.homepage = %q{http://github.com/manveru/makura}
+  s.require_paths = ["lib"]
+  s.rubygems_version = %q{1.3.1}
+  s.summary = %q{Ruby wrapper around the CouchDB REST API.}
 
-  s.add_dependency('rest-client', '>= 0.8.1')
+  if s.respond_to? :specification_version then
+    current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
+    s.specification_version = 2
 
-  s.files = [
-    "COPYING",
-    "README.md",
-    "bin/makura",
-    "example/blog.rb",
-    "example/couch/map/author_all.js",
-    "example/couch/map/author_posts.js",
-    "example/couch/map/post_all.js",
-    "example/couch/map/post_comments.js",
-    "example/couch/reduce/sum_length.js",
-    "lib/makura.rb",
-    "lib/makura/database.rb",
-    "lib/makura/design.rb",
-    "lib/makura/error.rb",
-    "lib/makura/http_methods.rb",
-    "lib/makura/layout.rb",
-    "lib/makura/model.rb",
-    "lib/makura/plugin/localize.rb",
-    "lib/makura/plugin/pager.rb",
-    "lib/makura/server.rb",
-    "lib/makura/uuid_cache.rb",
-    "makura.gemspec"
-  ]
+    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<rest-client>, [">= 0.8.1"])
+    else
+      s.add_dependency(%q<rest-client>, [">= 0.8.1"])
+    end
+  else
+    s.add_dependency(%q<rest-client>, [">= 0.8.1"])
+  end
 end
