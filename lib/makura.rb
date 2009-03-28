@@ -10,7 +10,6 @@ require 'rest_client'
 require 'json'
 
 module Makura
-  VERSION = '2008.01.15'
   ROOT = File.expand_path(File.dirname(__FILE__))
 end
 
@@ -18,6 +17,7 @@ unless $LOAD_PATH.any?{|lp| File.expand_path(lp) == Makura::ROOT }
   $LOAD_PATH.unshift(Makura::ROOT)
 end
 
+require 'makura/version'
 require 'makura/error'
 require 'makura/http_methods'
 require 'makura/server'
