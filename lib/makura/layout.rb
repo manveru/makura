@@ -34,20 +34,21 @@ module Makura
       common_load(:reduce, file_or_function)
     end
 
-    def common_load(root, file_or_function)
+    def common_load(type, file_or_function)
       return unless file_or_function
 
       if file_or_function =~ /function\(.*\)/
         function = file_or_function
       else
-        filename = "#{root}/#{file_or_function}.js"
+        *ns, file = file_or_function.split('::')
+        filename = File.join(ns, type.to_s, "#{file}.js")
 
         if pathname = PATH.find{|pa| File.file?(File.join(pa, filename)) }
           function = File.read(File.join(pathname, filename))
         end
       end
 
-      instance_variable_set("@#{root}", function) if function
+      instance_variable_set("@#{type}", function) if function
     end
 
     def save

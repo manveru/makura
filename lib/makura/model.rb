@@ -246,9 +246,12 @@ module Makura
 
       def layout(name, opts = {})
         design[name] = layout = Layout.new(name, design)
+        unless opts[:map] or opts[:reduce]
+          prefix = self.name.gsub(/\B[A-Z][^A-Z]/, '_\&')
+        end
 
-        map_name    = opts[:map]    || "#{self.name}_#{name}".downcase
-        reduce_name = opts[:reduce] || "#{self.name}_#{name}".downcase
+        map_name    = opts[:map]    || "#{prefix}_#{name}".downcase
+        reduce_name = opts[:reduce] || "#{prefix}_#{name}".downcase
 
         layout.load_map(map_name)
         layout.load_reduce(reduce_name)
