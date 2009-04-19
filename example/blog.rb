@@ -13,9 +13,6 @@ class Post
 
   layout :all
 
-  validates(:title){ presence and length :within => (3..100) }
-  validates(:text){ presence }
-
   save # submit design docs to CouchDB
 end
 

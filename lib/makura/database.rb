@@ -144,7 +144,7 @@ module Makura
     end
 
     def view(layout, params = {})
-      get("_view/#{layout}", params)
+      get("_design/#{layout}", params)
     end
 
     def save(doc)
@@ -210,7 +210,7 @@ module Makura
     end
 
     def inspect
-      "#<Makura::Database '#{@server.uri(name)}'>"
+      "#<Makura::Database '#{@server.uri(name || '/')}'>"
     end
   end
 end

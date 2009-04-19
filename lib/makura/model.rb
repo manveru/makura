@@ -84,13 +84,8 @@ module Makura
         ["#<#{self.class} ", @_hash, ">"].each{|e| e.pretty_print(o) }
       end
 
-      def saved?
-        self['_rev']
-      end
-
       def save
         return if not valid? if respond_to?(:valid)
-        return if saved?
         save!
       end
 
@@ -345,7 +340,7 @@ module Makura
 
       def view(name, opts = {})
         flat = opts.delete(:flat)
-        hash = database.view("#{self}/#{name}", opts)
+        hash = database.view("#{self}/_view/#{name}", opts)
 
         convert_raw(hash['rows'], flat)
       end
