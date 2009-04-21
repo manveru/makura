@@ -57,6 +57,10 @@ module Makura
     end
     i.to_s(16)
   end
+
+  def constant(name, root = Module)
+    name.split('::').inject(root){|s,v| s.const_get(v) }
+  end
 end
 
 Sofa = Makura # be backwards compatible

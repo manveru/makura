@@ -353,9 +353,8 @@ module Makura
           value = row['doc'] || row['value']
 
           if value.respond_to?(:to_hash)
-            if type = value['type'].split('::') and not flat
-              model_class = type.inject(Object){ |ns, name| ns.const_get(name) }
-              model_class.new(value)
+            if not flat and type = value['type']
+              Makura.constant(type).new(value)
             else
               row
             end
