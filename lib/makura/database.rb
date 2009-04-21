@@ -144,7 +144,7 @@ module Makura
     end
 
     def view(layout, params = {})
-      get("_design/#{layout}", params)
+      get("_view/#{layout}", params)
     end
 
     def save(doc)
