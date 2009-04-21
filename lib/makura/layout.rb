@@ -40,8 +40,9 @@ module Makura
       if file_or_function =~ /function\(.*\)/
         function = file_or_function
       else
-        *ns, file = file_or_function.split('::')
-        filename = File.join(ns, type.to_s, "#{file}.js")
+        parts = file_or_function.split('::')
+        file = parts.pop
+        filename = File.join(parts, type.to_s, "#{file}.js")
 
         if pathname = PATH.find{|pa| File.file?(File.join(pa, filename)) }
           function = File.read(File.join(pathname, filename))
