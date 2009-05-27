@@ -1,11 +1,15 @@
 desc 'code coverage'
 task :rcov => :clean do
-  specs = Dir['spec/innate/**/*.rb']
-  specs -= Dir['spec/innate/cache/common.rb']
+  specs = PROJECT_SPECS
 
-  # we ignore adapter as this has extensive specs in rack already.
-  ignore = %w[ gem rack bacon innate/adapter\.rb ]
-  ignore << 'fiber\.rb' if RUBY_VERSION < '1.9'
+  ignore = %w[ gem rack bacon innate hpricot nagoro/lib/nagoro ]
+
+  if RUBY_VERSION >= '1.8.7'
+    ignore << 'begin_with' << 'end_with'
+  end
+  if RUBY_VERSION < '1.9'
+    ignore << 'fiber'
+  end
 
   ignored = ignore.join(',')
 
