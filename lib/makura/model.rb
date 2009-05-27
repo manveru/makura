@@ -321,7 +321,7 @@ module Makura
       def multi_fetch(name, opts = {})
         keys = opts.delete(:keys) || opts.delete('keys')
         opts.merge!(:payload => {'keys' => Array(keys)})
-        hash = database.post("_view/#{self}/#{name}", opts)
+        hash = database.post("#{Makura.escape(self)}/_view/#{name}", opts)
         convert_raw(hash['rows'])
       end
 
