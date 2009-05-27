@@ -40,7 +40,7 @@ module Makura
       if file_or_function =~ /function\(.*\)/
         function = file_or_function
       else
-        parts = file_or_function.split('::')
+        parts = file_or_function.to_s.split('::')
         file = parts.pop
         filename = File.join(parts, type.to_s, "#{file}.js")
 
