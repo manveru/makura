@@ -326,7 +326,7 @@ module Makura
       end
 
       def multi_fetch_with_docs(name, opts = {})
-        opts.merge!(:include_docs => true, :reduce => false)
+        opts.merge!(:include_docs => true)
         multi_fetch(name, opts)
       end
       alias multi_document_fetch multi_fetch_with_docs
@@ -336,7 +336,7 @@ module Makura
       # To make using this approach more convenient use this method.
 
       def view_with_docs(name, opts = {})
-        opts.merge!(:include_docs => true, :reduce => false)
+        opts.merge!(:include_docs => true)
         view(name, opts)
       end
 
