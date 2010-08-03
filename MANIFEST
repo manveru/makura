@@ -1,3 +1,4 @@
+AUTHORS
 CHANGELOG
 COPYING
 MANIFEST
@@ -29,6 +30,7 @@ tasks/changelog.rake
 tasks/copyright.rake
 tasks/gem.rake
 tasks/gem_installer.rake
+tasks/gem_setup.rake
 tasks/git.rake
 tasks/grancher.rake
 tasks/manifest.rake
@@ -36,6 +38,7 @@ tasks/metric_changes.rake
 tasks/rcov.rake
 tasks/release.rake
 tasks/reversion.rake
+tasks/setup.rake
 tasks/todo.rake
 tasks/traits.rake
 tasks/yard.rake
