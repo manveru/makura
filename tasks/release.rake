@@ -9,7 +9,6 @@ namespace :release do
     sh('git', 'add',
        'MANIFEST', 'doc/CHANGELOG', 'doc/AUTHORS',
        "#{name}.gemspec",
-       'lib/proto/public/js/jquery.js',
        "lib/#{name}/version.rb")
 
     puts <<-INSTRUCTIONS
