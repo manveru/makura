@@ -7,26 +7,18 @@ namespace :metric do
 
     print 'counting changes '
 
-    Dir.glob 'lib/**/*.rb' do |rb|
-      count = `git log --pretty=oneline '#{rb}'`.count("\n")
+    Dir['lib/**/*.rb'].each do |rb|
+      changes = `git-log --pretty=oneline '#{rb}'`.count("\n")
       print '.'
       # out[changes, rb]
-      changes[rb] = count
+      changes[rb] = changes
     end
     puts ' done.'
 
     sorted = changes.sort_by{|r,c| c }.reverse
-
-    top = sorted.first(20)
-    unless top.empty?
-      puts "Top 20:"
-      top.each{|(r,c)| out[c,r] }
-    end
-
-    bottom = sorted.last(20) - top
-    unless bottom.empty?
-      puts "Bottom 20:"
-      bottom.each{|(r,c)| out[c,r] }
-    end
+    puts "Top 20:"
+    sorted.first(20).each{|(r,c)| out[c,r] }
+    puts "Bottom 20:"
+    sorted.last(20).each{|(r,c)| out[c,r] }
   end
 end

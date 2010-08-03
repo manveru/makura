@@ -1,5 +1,5 @@
 desc 'Run all bacon specs with pretty output'
-task :bacon => :install_dependencies do
+task :bacon => :setup do
   require 'open3'
   require 'scanf'
   require 'matrix'
@@ -16,15 +16,21 @@ task :bacon => :install_dependencies do
   left_format = "%4d/%d: %-#{len + 11}s"
   spec_format = "%d specifications (%d requirements), %d failures, %d errors"
 
+  load_path = File.expand_path('../../lib', __FILE__)
+
   specs.each_with_index do |spec, idx|
     print(left_format % [idx + 1, specs_size, spec])
 
-    Open3.popen3(RUBY, spec) do |sin, sout, serr|
+    Open3.popen3(RUBY, '-I', load_path, spec) do |sin, sout, serr|
       out = sout.read.strip
       err = serr.read.strip
 
-      # this is conventional, see spec/innate/state/fiber.rb for usage
+      # this is conventional
       if out =~ /^Bacon::Error: (needed .*)/
+        puts(yellow % ("%6s %s" % ['', $1]))
+      elsif out =~ /^Spec (precondition: "[^"]*" failed)/
+        puts(yellow % ("%6s %s" % ['', $1]))
+      elsif out =~ /^Spec require: "require" failed: "(no such file to load -- [^"]*)"/
         puts(yellow % ("%6s %s" % ['', $1]))
       else
         total = nil
