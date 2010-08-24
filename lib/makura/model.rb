@@ -72,8 +72,8 @@ module Makura
         @_hash.dup
       end
 
-      def to_json
-        @_hash.to_json
+      def to_json(*args)
+        @_hash.to_json(*args)
       end
 
       def inspect
