@@ -163,7 +163,7 @@ module Makura
     #     But in order to use our own uuids we still do it.
     def bulk_docs(docs)
       docs.each{|doc| doc['_id'] ||= @server.next_uuid }
-      post("_bulk_docs", :payload => {:docs => docs})
+      post("_bulk_docs", :payload => {:docs => docs}, 'Content-Type' => 'application/json')
     end
     alias bulk_save bulk_docs
 
