@@ -5,6 +5,8 @@ MANIFEST
 README.md
 Rakefile
 bin/makura
+doc/AUTHORS
+doc/CHANGELOG
 example/blog.rb
 example/couch/map/author_all.js
 example/couch/map/author_posts.js

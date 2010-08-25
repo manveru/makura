@@ -6,7 +6,7 @@ require 'date'
 
 PROJECT_SPECS = Dir['spec/**/*.rb']
 PROJECT_MODULE = 'Makura'
-PROJECT_VERSION = ENV['VERSION'].dup || Date.today.strftime("%Y.%m.%d")
+PROJECT_VERSION = (ENV['VERSION'] || Date.today.strftime("%Y.%m.%d")).dup
 
 GEMSPEC = Gem::Specification.new{|s|
   s.name         = 'makura'

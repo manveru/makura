@@ -1,3 +1,15 @@
+[1ad92e6 | Tue Aug 24 14:39:51 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * pass on arguments for to_json
+
+[29b1c12 | Tue Aug 24 14:39:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Fix bulk_docs for CouchDB 1.0
+
+[1f2647f | Tue Aug 03 05:32:53 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Version 2010.08
+
 [2f92913 | Tue Aug 03 05:32:36 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Remove last jquery reference
