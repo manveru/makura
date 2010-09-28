@@ -4,6 +4,7 @@ module Makura
     class ConnectionRefused < Error; end
     class RequestFailed < Error; end
     class ResourceNotFound < RequestFailed; end
+    class ServerBrokeConnection < RequestFailed; end
     class Conflict < RequestFailed; end
     class MissingRevision < RequestFailed; end
     class BadRequest < RequestFailed; end

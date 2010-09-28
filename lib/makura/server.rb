@@ -145,6 +145,8 @@ module Makura
       return raw
     rescue RestClient::RequestFailed => ex
       raise appropriate_error(ex)
+    rescue RestClient::ServerBrokeConnection => ex
+      raise Error::ServerBrokeConnection, request[:url], ex.backtrace
     rescue RestClient::ResourceNotFound => ex
       raise Error::ResourceNotFound, request[:url], ex.backtrace
     rescue Errno::ECONNREFUSED
