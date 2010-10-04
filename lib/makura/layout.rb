@@ -7,7 +7,7 @@ module Makura
       File.join(Makura::ROOT, '../couch')
     ]
 
-    def initialize(name, design = nil)
+    def initialize(name, design)
       @name, @design = name, design
       @design[name] = self
       @map = @reduce = nil
