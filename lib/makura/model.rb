@@ -85,7 +85,7 @@ module Makura
       end
 
       def save
-        return if not valid? if respond_to?(:valid)
+        return unless valid? if respond_to?(:valid?)
         save!
       end
 
