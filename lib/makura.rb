@@ -30,6 +30,7 @@ require 'makura/layout'
 module Makura
   CHARS = (48..128).map{|c| c.chr}.grep(/[[:alnum:]]/)
   MOD = CHARS.size
+  JSON_PARAMS = %w[key startkey endkey]
 
   module_function
 
@@ -38,6 +39,14 @@ module Makura
     s.to_s.gsub(/([^ a-zA-Z0-9_.-]+)/u) {
       '%'+$1.unpack('H2'*bytesize($1)).join('%').upcase
     }.tr(' ', '+')
+  end
+
+  def paramify(hash)
+    hash.map{|k,v|
+      k = k.to_s
+      v = v.to_json if JSON_PARAMS.include?(k)
+      "#{escape(k)}=#{escape(v)}"
+    }.join('&')
   end
 
   if "".respond_to?(:bytesize)

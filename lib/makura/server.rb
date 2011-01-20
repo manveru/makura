@@ -185,20 +185,10 @@ module Makura
       end
     end
 
-    JSON_PARAMS = %w[key startkey endkey]
-
-    def paramify(hash)
-      hash.map{|k,v|
-        k = k.to_s
-        v = v.to_json if JSON_PARAMS.include?(k)
-        "#{Makura.escape(k)}=#{Makura.escape(v)}"
-      }.join('&')
-    end
-
     def uri(path = '/', params = {})
       uri = @uri.dup
       uri.path = (path[0,1] == '/' ? path : "/#{path}").squeeze('/')
-      uri.query = paramify(params) unless params.empty?
+      uri.query = Makura.paramify(params) unless params.empty?
       uri
     end
   end
