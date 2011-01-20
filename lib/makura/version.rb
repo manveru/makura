@@ -1,3 +1,3 @@
 module Makura
-  VERSION = "2010.08.26"
+  VERSION = "2011.01.21"
 end

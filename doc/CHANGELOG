@@ -1,3 +1,31 @@
+[f605cce | Thu Jan 20 16:12:17 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Move Makura::Server#paramify to Makura::paramify to allow reuse
+
+[c136984 | Tue Oct 12 11:20:18 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Fix validation in Model#save, it checked for the wrong method name.
+
+[b236bcb | Mon Oct 04 13:18:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * design is not an optional argument
+
+[ea03df7 | Thu Sep 30 01:02:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Make escape compatible with unicode
+
+[37c2281 | Tue Sep 28 11:15:21 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Allow for _sum _count and _stats as builtin functions
+
+[afd5ba8 | Tue Sep 28 11:15:08 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Add ServerBrokeConnection to exceptions
+
+[b7479a6 | Wed Aug 25 16:26:05 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Version 2010.08.26
+
 [1ad92e6 | Tue Aug 24 14:39:51 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * pass on arguments for to_json
