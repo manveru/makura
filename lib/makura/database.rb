@@ -116,7 +116,7 @@ module Makura
     end
 
     def all_docs(params = {})
-      get('_all_docs')
+      get('_all_docs', params)
     end
     alias documents all_docs
 
