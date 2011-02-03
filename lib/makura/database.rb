@@ -115,6 +115,18 @@ module Makura
       get('/')
     end
 
+    def compact(design_name = nil)
+      if design
+        post("/_compact/#{design_name}")
+      else
+        post("/_compact")
+      end
+    end
+
+    def view_cleanup
+      post("/_view_cleanup")
+    end
+
     def all_docs(params = {})
       get('_all_docs', params)
     end
