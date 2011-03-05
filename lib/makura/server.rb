@@ -53,6 +53,35 @@ module Makura
       post('/_restart')
     end
 
+    def active_tasks
+      get('/_active_tasks')
+    end
+
+    # Usage:
+    #   server.replicate(source: "foodb", target: "http://example.org/foodb")
+    #
+    # Optional Arguments:
+    #   # Start continuous replication
+    #   continuous: (default is false)
+    #
+    #   # Create the target database
+    #   create_target: (default is false)
+    #
+    #   # Cancel existing replication
+    #   cancel: (default is false)
+    #
+    #   # Use a filter function
+    #   filter: (default is none)
+    #
+    #   # Pass query parameters to filter function
+    #   query_params: {key: value} (default is none)
+    #
+    # Please note that when you want to cancel a replication, you have to pass
+    # the exact same arguments that it was created with plus the :cancel argument.
+    def replicate(args)
+      post('/_replicate', :payload => args)
+    end
+
     # Array of names of databases on the server
     #
     # Usage:
