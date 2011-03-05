@@ -151,6 +151,8 @@ module Makura
 
       if content_type = params.delete('Content-Type')
         headers['Content-Type'] = content_type
+      elsif method == :post
+        headers['Content-Type'] = 'application/json'
       end
 
       params.delete_if{|k,v| v.nil? }
