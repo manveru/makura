@@ -12,7 +12,6 @@ module Makura
     #   #<URI::HTTP:0xb778ce38 URL:http://localhost:5984>
     #   server.info
     #   {"couchdb"=>"Welcome", "version"=>"0.9.0a718650-incubating"}
-
     def initialize(uri = COUCHDB_URI, cache_ttl = CACHE_TTL, cache_tries = CACHE_TRIES)
       @uri = URI(uri.to_s)
       @cache_ttl = cache_ttl
@@ -45,18 +44,60 @@ module Makura
     end
 
     # Issue restart of the CouchDB daemon.
+    # This will ensure that everything was committed before restarting, if you
+    # want to restart immediately, use the #restart! method.
     #
     # Usage:
     #   server.restart
     #   # {'ok' => true}
     def restart
+      databases.each do |name|
+        db = Database.new(self, name, auto_create = false)
+        db.ensure_full_commit
+      end
+
+      restart!
+    end
+
+    # Issue restart of the CouchDB daemon.
+    #
+    # Usage:
+    #   server.restart
+    #   # {'ok' => true}
+    def restart!
       post('/_restart')
     end
 
+    # Returns an array with the active tasks on the server.
+    #
+    # Reference:
+    #   http://wiki.apache.org/couchdb/HttpGetActiveTasks
+    #
+    # Usage:
+    #   server.active_tasks
+    #   # [{"type" => "Replication",
+    #   #   "task" => "e22ef0: http://fox:5984/example/ -> example",
+    #   #   "status" => "W Processed source update #2130297",
+    #   #   "pid" => "<0.8704.97>"}]
     def active_tasks
       get('/_active_tasks')
     end
 
+    # The replication is an incremental one way process involving two databases
+    # (a source and a destination).
+    #
+    # The aim of the replication is that at the end of the process, all active
+    # documents on the source database are also in the destination database and
+    # all documents that were deleted in the source databases are also deleted
+    # (if exists) on the destination database.
+    #
+    # The replication process only copies the last revision of a document, so
+    # all previous revisions that were only on the source database are not
+    # copied to the destination database.
+    #
+    # Reference:
+    #   http://wiki.apache.org/couchdb/Replication
+    #
     # Usage:
     #   server.replicate(source: "foodb", target: "http://example.org/foodb")
     #
@@ -98,7 +139,6 @@ module Makura
     #   # #<Makura::Database 'http://localhost:5984/foo'>
     #   server.databases
     #   # ["another", "blog", "foo", "makura-spec"]
-
     def database(name)
       Database.new(self, name)
     end
@@ -108,7 +148,6 @@ module Makura
     # Usage:
     #   server.next_uuid
     #   # "55fdca746fa5a5b56f5270875477a2cc"
-
     def next_uuid
       @uuids.next
     end
