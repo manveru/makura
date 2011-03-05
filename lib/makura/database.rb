@@ -116,7 +116,7 @@ module Makura
     end
 
     def compact(design_name = nil)
-      if design
+      if design_name
         post("/_compact/#{design_name}")
       else
         post("/_compact")
