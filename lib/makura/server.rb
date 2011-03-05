@@ -128,9 +128,10 @@ module Makura
     # Usage:
     #   server.databases
     #   # ["another", "blog", "makura-spec"]
-    def databases
+    def all_dbs
       get('/_all_dbs')
     end
+    alias databases all_dbs
 
     # Return new database instance using this server instance.
     #
