@@ -136,6 +136,16 @@ module Makura
     end
     alias documents all_docs
 
+    def design_docs(params = {})
+      pass = {
+        startkey: '_design0',
+        endkey: '_design',
+        descending: true,
+      }.merge(params)
+
+      all_docs(pass)
+    end
+
     def [](id, rev = nil)
       id = Makura.escape(id)
       if rev
