@@ -220,7 +220,7 @@ module Makura
     end
 
     def request(method, path, params = {})
-      @server.send(:request, method, "/#{name}/#{path}", params)
+      @server.request(method, "/#{name}/#{path}", params)
     end
 
     def encode_attachments(attachments)
