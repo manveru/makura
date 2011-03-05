@@ -127,6 +127,10 @@ module Makura
       post("/_view_cleanup")
     end
 
+    def ensure_full_commit
+      post('/_ensure_full_commit')
+    end
+
     def all_docs(params = {})
       get('_all_docs', params)
     end
