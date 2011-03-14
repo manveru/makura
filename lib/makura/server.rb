@@ -128,6 +128,14 @@ module Makura
       post('/_replicate', :payload => args)
     end
 
+    def log
+      get('/_log')
+    end
+
+    def stats
+      get('/_stats')
+    end
+
     # Array of names of databases on the server
     #
     # Usage:
