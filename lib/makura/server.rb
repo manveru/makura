@@ -34,6 +34,11 @@ module Makura
       get('/')
     end
 
+    # BigCouch query
+    def membership
+      get('/_membership')
+    end
+
     # Answers with configuration info.
     #
     # Usage:
