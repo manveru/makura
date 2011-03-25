@@ -107,7 +107,9 @@ module Makura
 
       # path, file, args = {})
       def attach(*args)
-        self.class.database.put_attachment(self, *args)
+        response = self.class.database.put_attachment(self, *args)
+        self._rev = response['rev']
+        response
       end
 
       # delete attachment by name.
