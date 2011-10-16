@@ -81,5 +81,3 @@ module Makura
     name.split('::').inject(root){|s,v| s.const_get(v) }
   end
 end
-
-Sofa = Makura # be backwards compatible
