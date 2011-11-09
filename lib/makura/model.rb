@@ -3,12 +3,6 @@ module Makura
     KEY = 'makura_type'
 
     class << self
-      attr_reader :server, :database
-
-      def database=(name)
-        @database = server.database(name)
-      end
-
       def server=(obj)
         case obj
         when Makura::Server
@@ -23,6 +17,18 @@ module Makura
       def server
         return @server if @server
         self.server = Makura::Server.new
+      end
+
+      def database=(name)
+        @database = server.database(name)
+      end
+
+      def database
+        return @database if @database
+        if server.uri.path != '/'
+          self.database = server.uri.path
+          @database
+        end
       end
 
       def included(into)
