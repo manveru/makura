@@ -1,6 +1,6 @@
 require 'rake'
 require 'rake/clean'
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 require 'time'
 require 'date'
 
