@@ -5,6 +5,10 @@ require 'makura'
 # Makura::Model.server = 'http://localhost:5984'
 Makura::Model.database = 'mydb'
 
+# Remove all the data we have in the database, start from scratch
+Makura::Model.database.destroy!
+Makura::Model.database.create
+
 class Post
   include Makura::Model
 
