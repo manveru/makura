@@ -1,7 +1,8 @@
 module Makura
   class Server
     include HTTPMethods
-    attr_accessor :uri, :cache_ttl, :cache_tries
+    attr_accessor :cache_ttl, :cache_tries
+    attr_writer :uri
 
     COUCHDB_URI = 'http://localhost:5984'
     CACHE_TTL = 5
@@ -217,14 +218,14 @@ module Makura
         :payload => payload,
         :headers => headers}
 
-      if @cache and request[:method] == :get
+      if @cache && request[:method] == :get
         raw = cached(request)
       else
         raw = execute(request)
       end
 
       return raw if keep_raw
-      json = JSON.parse(raw)
+      JSON.parse(raw)
     rescue JSON::ParserError
       return raw
     rescue RestClient::RequestFailed => ex
