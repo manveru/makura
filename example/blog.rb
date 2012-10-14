@@ -1,8 +1,8 @@
-require 'makura'
+require '../lib/makura'
 
 # Setting up everything
 
-# Makura::Model.server = 'http://localhost:5984'
+Makura::Model.server = 'http://Administrator:smokey@localhost:5984'
 Makura::Model.database = 'mydb'
 
 # Remove all the data we have in the database, start from scratch
@@ -16,7 +16,9 @@ class Post
   belongs_to :author
 
   layout :all
-
+  filter :created_by
+  filter :shorter_than
+  
   save # submit design docs to CouchDB
 end
 
@@ -26,8 +28,7 @@ class Author
   property :name
 
   layout :posts, :reduce => :sum_length
-  layout :all
-
+  layout :all  
   save
 end
 

@@ -267,6 +267,20 @@ module Makura
 
         return layout
       end
+      
+      def filter(name, opts = {})
+        design[name] = filter = Filter.new(name, design)
+        
+        unless opts[:filter]
+          prefix = self.name.gsub('::', '/')
+        end
+        
+        filter_name = opts[:filter] || "#{prefix}/#{name}".downcase
+        
+        filter.load_filter(filter_name)
+        
+        return filter
+      end
 
       def proto_layout(common, name, opts = {})
         design[name] = layout = Layout.new(name, design)

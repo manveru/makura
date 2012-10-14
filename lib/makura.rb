@@ -26,6 +26,7 @@ require 'makura/uuid_cache'
 require 'makura/model'
 require 'makura/design'
 require 'makura/layout'
+require 'makura/filter'
 
 module Makura
   CHARS = (48..128).map{|c| c.chr}.grep(/[[:alnum:]]/)
