@@ -1,3 +1,5 @@
+.gems
+.rvmrc
 AUTHORS
 CHANGELOG
 COPYING
@@ -8,15 +10,18 @@ bin/makura
 doc/AUTHORS
 doc/CHANGELOG
 example/blog.rb
-example/couch/map/author_all.js
-example/couch/map/author_posts.js
-example/couch/map/post_all.js
-example/couch/map/post_comments.js
+example/couch/filter/post/created_by.js
+example/couch/filter/post/shorter_than.js
+example/couch/map/author/all.js
+example/couch/map/author/posts.js
+example/couch/map/post/all.js
+example/couch/map/post/comments.js
 example/couch/reduce/sum_length.js
 lib/makura.rb
 lib/makura/database.rb
 lib/makura/design.rb
 lib/makura/error.rb
+lib/makura/filter.rb
 lib/makura/http_methods.rb
 lib/makura/layout.rb
 lib/makura/model.rb
@@ -43,5 +48,3 @@ tasks/reversion.rake
 tasks/setup.rake
 tasks/todo.rake
 tasks/traits.rake
-tasks/yard.rake
-tasks/ycov.rake
