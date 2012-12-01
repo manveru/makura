@@ -126,7 +126,7 @@ module Makura
     # Please note that when you want to cancel a replication, you have to pass
     # the exact same arguments that it was created with plus the :cancel argument.
     def replicate(args)
-      post('/_replicate', :payload => args)
+      post('/_replicator', :payload => args)
     end
 
     def log

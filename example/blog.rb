@@ -3,7 +3,7 @@ require '../lib/makura'
 # Setting up everything
 
 Makura::Model.server = 'http://Administrator:smokey@localhost:5984'
-Makura::Model.database = 'mydb'
+Makura::Model.database = 'makura-test'
 
 # Remove all the data we have in the database, start from scratch
 Makura::Model.database.destroy!
@@ -53,3 +53,7 @@ Post.view(:all).each do |post|
   p post
   p post.author
 end
+
+t = Makura::Model.server.database('makura-test-replica')
+res = Makura::Model.server.replicate({:source=>'makura-test',:target=>'makura-test-replica',:continuous=>true})
+puts res
