@@ -1,3 +1,11 @@
+[aafbb28 | Sat Dec 01 08:16:10 UTC 2012] Tobin Harris <tobin@tobinharris.com>
+
+  * Replication uses new _replicator database
+
+[5ccbca8 | Sun Oct 14 10:08:49 UTC 2012] Tobin Harris <tobin@tobinharris.com>
+
+  * Updated gemspec
+
 [79dc089 | Sun Oct 14 10:05:17 UTC 2012] Tobin Harris <tobin@tobinharris.com>
 
   * Added filters for filtered replication.
