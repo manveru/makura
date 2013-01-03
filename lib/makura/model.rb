@@ -255,13 +255,14 @@ module Makura
       def layout(name, opts = {})
         design[name] = layout = Layout.new(name, design)
 
-        unless opts[:map] || opts[:reduce]
+        unless opts[:map] # || opts[:reduce] #WARNING: Breaking change?
           prefix = self.name.gsub('::', '/')
         end
 
         map_name    = opts[:map]    || "#{prefix}/#{name}".downcase
         reduce_name = opts[:reduce] || "#{prefix}/#{name}".downcase
 
+        puts "Map: #{map_name}, Reduce: #{reduce_name}"
         layout.load_map(map_name)
         layout.load_reduce(reduce_name)
 
@@ -280,6 +281,20 @@ module Makura
         filter.load_filter(filter_name)
         
         return filter
+      end
+
+      def list(name, opts = {})
+        design[name] = list = List.new(name, design)
+
+        unless opts[:list]
+          prefix = self.name.gsub('::', '/')
+        end
+
+        list_name = opts[:list] || "#{prefix}/#{name}".downcase
+
+        list.load_list(list_name)
+
+        return list
       end
 
       def proto_layout(common, name, opts = {})
