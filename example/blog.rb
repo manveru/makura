@@ -16,6 +16,7 @@ class Post
   belongs_to :author
 
   layout :all
+  layout :stats
   filter :created_by
   filter :shorter_than
 
@@ -51,16 +52,23 @@ post = Post.new(
   :author => author)
 post.save
 
-puts "All posts with associated author\n\n"
+puts "\n\nAll posts with associated author\n\n"
 Post.view(:all).each do |post|
   p post
   p post.author
 end
 
-puts "Author posts reduced by sum of length\n\n"
+puts "\n\nAuthor posts reduced by sum of length\n\n"
 Author.view(:posts).each do |res|
   p res
 end
+
+puts "\n\nPosts stats view automatically uses reduce function\n\n"
+Post.view(:stats, :group=>true).each do |s|
+  p s
+end
+
+puts "\n\nReplication stuff\n\n"
 
 t = Makura::Model.server.database('makura-test-replica')
 res = Makura::Model.server.replicate({:source=>'makura-test',:target=>'makura-test-replica',:continuous=>true})

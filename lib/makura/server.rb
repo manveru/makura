@@ -129,6 +129,10 @@ module Makura
       post('/_replicator', :payload => args)
     end
 
+    def replicate_without_persistence(args)
+      post('/_replicate', :payload => args)
+    end
+
     def log
       get('/_log')
     end
