@@ -60,6 +60,9 @@ module Makura
 
     def to_hash
       {:map => @map, :reduce => @reduce, :makura_options => @options}
+      response_hash = { :map => @map, :makura_options => @options}
+      response_hash[:reduce] = @reduce unless reduce.nil?
+      return response_hash
     end
   end
 end

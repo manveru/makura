@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{makura}
-  s.version = "2013.03.28"
+  s.version = "2013.04.08"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Michael 'manveru' Fellinger}]
