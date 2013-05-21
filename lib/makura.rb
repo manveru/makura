@@ -80,6 +80,7 @@ module Makura
   end
 
   def constant(name, root = Module)
+    name.sub!(/^(.)/){ |m| "#{$1.upcase}"} # Required for databases such as '_users'
     name.split('::').inject(root){|s,v| s.const_get(v) }
   end
 end
