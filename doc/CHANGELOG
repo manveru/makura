@@ -1,470 +1,506 @@
-[94f583f | Fri Mar 25 12:27:42 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[aafbb28 | Sat Dec 01 08:16:10 UTC 2012] Tobin Harris <tobin@tobinharris.com>
+
+  * Replication uses new _replicator database
+
+[5ccbca8 | Sun Oct 14 10:08:49 UTC 2012] Tobin Harris <tobin@tobinharris.com>
+
+  * Updated gemspec
+
+[79dc089 | Sun Oct 14 10:05:17 UTC 2012] Tobin Harris <tobin@tobinharris.com>
+
+  * Added filters for filtered replication.
+
+[7e91527 | Sun Oct 14 10:04:38 UTC 2012] Tobin Harris <tobin@tobinharris.com>
+
+  * Added filters for filtered replication
+
+[6163349 | Wed Apr 25 19:33:26 UTC 2012] Michael Fellinger <m.fellinger@gmail.com>
+
+  * get rid of some warnings
+
+[341a371 | Wed Apr 25 19:33:08 UTC 2012] Michael Fellinger <m.fellinger@gmail.com>
+
+  * fix the blog example
+
+[8ca2b5b | Wed Nov 09 23:58:39 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Better Model::database default
+
+[b7a5ab6 | Tue Jan 31 22:12:50 UTC 2012] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Version 2012.01
+
+[ea015a0 | Sun Oct 16 22:28:54 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+
+  * Remove Sofa constant for good
+
+[94f583f | Fri Mar 25 13:27:42 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Update document _rev when attaching files via Model#attach
 
-[08ae147 | Tue Mar 15 00:00:14 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[08ae147 | Tue Mar 15 01:00:14 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Adding Server#log and Server#stats
 
-[b7ea52e | Tue Mar 15 00:00:04 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[b7ea52e | Tue Mar 15 01:00:04 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Adding Server#membership for bigcouch
 
-[f7e7895 | Sat Mar 05 18:46:12 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[f7e7895 | Sat Mar 05 19:46:12 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add Server#all_dbs for consistency
 
-[31d221a | Sat Mar 05 18:45:34 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[31d221a | Sat Mar 05 19:45:34 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Improve docs, restart now tries to ensure full commits
 
-[2d58a53 | Sat Mar 05 13:32:15 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[2d58a53 | Sat Mar 05 14:32:15 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Default POST Content-Type to application/json
 
-[c818add | Sat Mar 05 13:31:52 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[c818add | Sat Mar 05 14:31:52 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Adding Server#active_tasks and Server#replicate
 
-[a8c0318 | Sat Mar 05 13:31:23 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[a8c0318 | Sat Mar 05 14:31:23 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Simplify dispatching of requests
 
-[f58339d | Sat Mar 05 13:30:53 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[f58339d | Sat Mar 05 14:30:53 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add Database#design_docs
 
-[895ac2b | Sat Mar 05 13:30:28 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[895ac2b | Sat Mar 05 14:30:28 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add Database#ensure_full_commit
 
-[30953f8 | Sat Mar 05 13:30:13 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[30953f8 | Sat Mar 05 14:30:13 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix typo
 
-[564f8cd | Thu Feb 03 05:55:05 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[564f8cd | Thu Feb 03 06:55:05 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Adding Database#compact and Database#view_cleanup
 
-[e704e45 | Thu Feb 03 05:54:43 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[e704e45 | Thu Feb 03 06:54:43 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Database#all_docs now passes the params on
 
-[978aafc | Fri Jan 21 00:25:35 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[978aafc | Fri Jan 21 01:25:35 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2011.01.21
 
-[f605cce | Fri Jan 21 00:12:17 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
+[f605cce | Fri Jan 21 01:12:17 UTC 2011] Michael Fellinger <m.fellinger@gmail.com>
 
   * Move Makura::Server#paramify to Makura::paramify to allow reuse
 
-[c136984 | Tue Oct 12 18:20:18 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[c136984 | Tue Oct 12 19:20:18 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix validation in Model#save, it checked for the wrong method name.
 
-[b236bcb | Mon Oct 04 20:18:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[b236bcb | Mon Oct 04 21:18:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * design is not an optional argument
 
-[ea03df7 | Thu Sep 30 08:02:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[ea03df7 | Thu Sep 30 09:02:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Make escape compatible with unicode
 
-[37c2281 | Tue Sep 28 18:15:21 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[37c2281 | Tue Sep 28 19:15:21 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Allow for _sum _count and _stats as builtin functions
 
-[afd5ba8 | Tue Sep 28 18:15:08 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[afd5ba8 | Tue Sep 28 19:15:08 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add ServerBrokeConnection to exceptions
 
-[b7479a6 | Wed Aug 25 23:26:05 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[b7479a6 | Thu Aug 26 00:26:05 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2010.08.26
 
-[1ad92e6 | Tue Aug 24 21:39:51 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[1ad92e6 | Tue Aug 24 22:39:51 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * pass on arguments for to_json
 
-[29b1c12 | Tue Aug 24 21:39:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[29b1c12 | Tue Aug 24 22:39:39 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix bulk_docs for CouchDB 1.0
 
-[1f2647f | Tue Aug 03 12:32:53 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[1f2647f | Tue Aug 03 13:32:53 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2010.08
 
-[2f92913 | Tue Aug 03 12:32:36 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[2f92913 | Tue Aug 03 13:32:36 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Remove last jquery reference
 
-[3e9ccc2 | Tue Aug 03 12:26:53 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
+[3e9ccc2 | Tue Aug 03 13:26:53 UTC 2010] Michael Fellinger <m.fellinger@gmail.com>
 
   * Update tasks
 
-[8a3f06f | Fri Jul 16 11:55:40 UTC 2010] Tadahiko Uehara <kikofx@gmail.com>
+[8a3f06f | Fri Jul 16 12:55:40 UTC 2010] Tadahiko Uehara <kikofx@gmail.com>
 
   * Remove reduce parameter to prevent 'Invalid URL parameter' error.
 
     See https://issues.apache.org/jira/browse/COUCHDB-383#action_12722350
 
-[a5c7b82 | Wed May 27 13:25:54 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[a5c7b82 | Wed May 27 14:25:54 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix url for Model#multi_fetch
 
-[9c9f8b3 | Wed May 27 13:25:40 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[9c9f8b3 | Wed May 27 14:25:40 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * The model namespace now directly translates into the couch/ structure, Foo::Bar#duh becomes couch/map/foo/bar/duh.js
 
-[3dc3e54 | Wed May 27 13:24:38 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[3dc3e54 | Wed May 27 14:24:38 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix issue with layout on 1.9
 
-[14cf088 | Wed May 27 09:29:08 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[14cf088 | Wed May 27 10:29:08 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * forgot AUTHORS
 
-[752081e | Wed May 27 09:28:46 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[752081e | Wed May 27 10:28:46 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2009.05.27
 
-[d4565ac | Wed May 27 09:23:09 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[d4565ac | Wed May 27 10:23:09 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix rakefile
 
-[33f27af | Wed May 27 09:21:44 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[33f27af | Wed May 27 10:21:44 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Update tasks
 
-[4fd7977 | Mon May 11 10:52:51 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[4fd7977 | Mon May 11 11:52:51 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Revert changes to get going on 0.9.0
 
-[255e65c | Wed Apr 22 00:14:06 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[255e65c | Wed Apr 22 01:14:06 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2009.04.22
 
-[307642a | Wed Apr 22 00:12:55 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[307642a | Wed Apr 22 01:12:55 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add Makura::constant and use it in convert_raw
 
-[e6370eb | Wed Apr 22 00:10:12 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[e6370eb | Wed Apr 22 01:10:12 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Make Makura run on 1.8 again
 
-[4f8cc31 | Wed Apr 22 00:09:59 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[4f8cc31 | Wed Apr 22 01:09:59 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix references to _view
 
-[513495b | Tue Apr 21 13:15:47 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
+[513495b | Tue Apr 21 14:15:47 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
 
   * Make convert_raw work with namespaced model.
 
-[e2eee79 | Sun Apr 19 11:58:12 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
+[e2eee79 | Sun Apr 19 12:58:12 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
 
   * Support for namespaced models by using namespace as layout's dir name.
 
             MyApp::Admin::Foo #=> .couch/my_app/admin/map/foo_xxx.js
 
-[8c9aa24 | Sat Mar 28 16:01:56 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[8c9aa24 | Sat Mar 28 17:01:56 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2009.03.28
 
-[da5cebc | Sat Mar 28 16:00:13 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[da5cebc | Sat Mar 28 17:00:13 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Put version in another file for easier management
 
-[534a2bc | Sat Mar 28 15:59:15 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[534a2bc | Sat Mar 28 16:59:15 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add Rakefile and some tasks
 
-[643fa64 | Sun Mar 01 21:23:15 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
+[643fa64 | Sun Mar 01 22:23:15 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
 
   * Use Array() instead of to_a for Ruby 1.9 compatibility.
 
     Signed-off-by: Michael Fellinger <m.fellinger@gmail.com>
 
-[3d77ce6 | Sat Mar 21 13:07:04 UTC 2009] Preston Marshall <preston@synergy-solutions.biz>
+[3d77ce6 | Sat Mar 21 14:07:04 UTC 2009] Preston Marshall <preston@synergy-solutions.biz>
 
   * new gem
 
     Signed-off-by: Michael Fellinger <m.fellinger@gmail.com>
 
-[9eb26bb | Sat Mar 21 13:00:38 UTC 2009] Preston Marshall <preston@synergy-solutions.biz>
+[9eb26bb | Sat Mar 21 14:00:38 UTC 2009] Preston Marshall <preston@synergy-solutions.biz>
 
   * Updated view path for latest svn (not sure when it was added, but it works with this) temp views may be affected too, but have not tried them yet
 
     Signed-off-by: Michael Fellinger <m.fellinger@gmail.com>
 
-[6b23e9c | Sun Mar 22 01:00:04 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[6b23e9c | Sun Mar 22 02:00:04 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * remove Model#saved?, that makes Model#save work as expected
 
-[c83c392 | Sun Mar 22 00:55:57 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[c83c392 | Sun Mar 22 01:55:57 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Remove last traces of NotNaughty from example
 
-[19a63b5 | Mon Mar 02 09:08:08 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[19a63b5 | Mon Mar 02 10:08:08 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix inspect for Database
 
-[5ae5345 | Sun Mar 01 22:23:15 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
+[5ae5345 | Sun Mar 01 23:23:15 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
 
   * Use Array() instead of to_a for Ruby 1.9 compatibility.
 
-[1ff34ab | Sat Feb 28 22:24:53 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[1ff34ab | Sat Feb 28 23:24:53 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Shame on me, forgot to add that change... will push new version tomorrow
 
     Signed-off-by: Tadahiko Uehara <kikofX@gmail.com>
 
-[dfc353a | Sat Feb 28 22:23:39 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[dfc353a | Sat Feb 28 23:23:39 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2009.03.01, removed json gem dependency as ruby 1.9.1 has it in stdlib
 
     Signed-off-by: Tadahiko Uehara <kikofX@gmail.com>
 
-[29fe7ec | Sat Feb 28 23:24:53 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[29fe7ec | Sun Mar 01 00:24:53 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Shame on me, forgot to add that change... will push new version tomorrow
 
-[349be0a | Sat Feb 28 23:23:39 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[349be0a | Sun Mar 01 00:23:39 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2009.03.01, removed json gem dependency as ruby 1.9.1 has it in stdlib
 
-[ad1a97d | Mon Feb 23 08:51:19 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[ad1a97d | Mon Feb 23 09:51:19 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Proper fallback to default_language
 
     Signed-off-by: Tadahiko Uehara <kikofX@gmail.com>
 
-[4b89942 | Mon Feb 16 15:32:02 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[4b89942 | Mon Feb 16 16:32:02 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Some docs for localize plugin
 
     Signed-off-by: Tadahiko Uehara <kikofX@gmail.com>
 
-[b79a538 | Mon Feb 16 15:31:55 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[b79a538 | Mon Feb 16 16:31:55 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Support for default language in localize plugin
 
     Signed-off-by: Tadahiko Uehara <kikofX@gmail.com>
 
-[de84c8b | Wed Feb 18 09:45:30 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[de84c8b | Wed Feb 18 10:45:30 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Update version
 
     Signed-off-by: Tadahiko Uehara <kikofX@gmail.com>
 
-[4d4a4c1 | Mon Feb 16 15:24:51 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[4d4a4c1 | Mon Feb 16 16:24:51 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add plugin/localize
 
     Signed-off-by: Tadahiko Uehara <kikofX@gmail.com>
 
-[83e9177 | Mon Feb 23 09:51:19 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[83e9177 | Mon Feb 23 10:51:19 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Proper fallback to default_language
 
-[a72c2c6 | Wed Feb 18 10:45:30 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[a72c2c6 | Wed Feb 18 11:45:30 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Update version
 
-[1feac5a | Mon Feb 16 16:32:02 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[1feac5a | Mon Feb 16 17:32:02 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Some docs for localize plugin
 
-[4ab5df7 | Mon Feb 16 16:31:55 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[4ab5df7 | Mon Feb 16 17:31:55 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Support for default language in localize plugin
 
-[cd045a1 | Mon Feb 16 16:24:51 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[cd045a1 | Mon Feb 16 17:24:51 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add plugin/localize
 
-[fddd7aa | Fri Feb 13 13:41:25 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
+[fddd7aa | Fri Feb 13 14:41:25 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
 
   * fix typo.
 
     Signed-off-by: Michael Fellinger <m.fellinger@gmail.com>
 
-[5469f31 | Fri Feb 13 14:41:25 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
+[5469f31 | Fri Feb 13 15:41:25 UTC 2009] Tadahiko Uehara <kikofx@gmail.com>
 
   * fix typo.
 
-[025964f | Thu Jan 15 10:35:37 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
+[025964f | Thu Jan 15 11:35:37 UTC 2009] Michael Fellinger <m.fellinger@gmail.com>
 
   * Sofa is now called Makura
 
-[e8bfaf9 | Tue Dec 30 01:09:46 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[e8bfaf9 | Tue Dec 30 02:09:46 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Don't rely on NotNaughty!
 
-[fb10169 | Wed Dec 24 12:56:55 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[fb10169 | Wed Dec 24 13:56:55 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Release 2008.12.24
 
-[e4b2a88 | Wed Dec 24 12:56:29 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[e4b2a88 | Wed Dec 24 13:56:29 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Layout::PATH
 
-[2156ed1 | Wed Dec 24 12:55:37 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[2156ed1 | Wed Dec 24 13:55:37 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Remove Rack as dependency
 
-[b9a9724 | Sun Dec 21 16:51:18 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[b9a9724 | Sun Dec 21 17:51:18 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Support for map/reduce templating
 
-[411786e | Fri Dec 19 20:08:11 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[411786e | Fri Dec 19 21:08:11 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Better error message if resource not found
 
-[6579ae3 | Tue Dec 16 10:57:40 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[6579ae3 | Tue Dec 16 11:57:40 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Fix usage of pretty_from_md5
 
-[514c7d6 | Mon Dec 15 15:03:43 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[514c7d6 | Mon Dec 15 16:03:43 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Update gemspec
 
-[05640a9 | Mon Dec 15 15:03:02 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[05640a9 | Mon Dec 15 16:03:02 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Remove dependency on not_naughty
 
-[c72821d | Mon Dec 15 15:02:44 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[c72821d | Mon Dec 15 16:02:44 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Convert MD5 from CouchDB uuid generator into base 62
 
-[405d360 | Sun Dec 14 14:40:52 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[405d360 | Sun Dec 14 15:40:52 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Implement Model#hash and Model#eql?
 
-[87c709e | Sat Dec 13 12:18:14 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[87c709e | Sat Dec 13 13:18:14 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Model::multi_fetch and Model::multi_fetch_with_docs
 
-[7e369ed | Fri Dec 12 14:27:34 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[7e369ed | Fri Dec 12 15:27:34 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Ignore nil value parameters for the uri
 
-[5decf5c | Fri Dec 12 14:03:28 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[5decf5c | Fri Dec 12 15:03:28 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Rescue correct error on Model::[]
 
-[bc28450 | Thu Dec 11 18:11:57 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[bc28450 | Thu Dec 11 19:11:57 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Disable caching automatically if memcached isn't available
 
-[aea3dd7 | Wed Dec 10 22:45:16 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[aea3dd7 | Wed Dec 10 23:45:16 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add Model#detach to get rid of attachments
 
-[1705ad2 | Mon Dec 08 13:31:11 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[1705ad2 | Mon Dec 08 14:31:11 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * CACHE_TTL is now 5 by default
 
-[e6aa3f9 | Thu Dec 04 16:31:07 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[e6aa3f9 | Thu Dec 04 17:31:07 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Make only one request per relation
 
-[c47cea0 | Thu Dec 04 16:30:39 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[c47cea0 | Thu Dec 04 17:30:39 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add Model#to_json
 
-[aceb7e7 | Thu Dec 04 16:30:18 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[aceb7e7 | Thu Dec 04 17:30:18 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Add support for caching GET requests in memcached
 
-[c055759 | Thu Dec 04 13:36:15 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[c055759 | Thu Dec 04 14:36:15 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * a little bit better error handling
 
-[204f003 | Wed Dec 03 10:49:13 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[204f003 | Wed Dec 03 11:49:13 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2008.12.03
 
-[2eec148 | Mon Dec 01 23:58:20 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[2eec148 | Tue Dec 02 00:58:20 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Avoid storing empty maps, bad bad mojo
 
-[617b9f6 | Sat Nov 29 14:53:53 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[617b9f6 | Sat Nov 29 15:53:53 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2008.11.29
 
-[cbe43fa | Sat Nov 29 14:53:14 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[cbe43fa | Sat Nov 29 15:53:14 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Remove debugging output
 
-[67f811e | Fri Nov 28 15:52:46 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[67f811e | Fri Nov 28 16:52:46 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Compensate for a bug in couch_httpd_view.erl
 
-[ba95c06 | Fri Nov 28 15:51:56 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[ba95c06 | Fri Nov 28 16:51:56 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Automatic conversion of Time, new :type parameter for property
 
-[2b2cffd | Fri Nov 28 15:51:19 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[2b2cffd | Fri Nov 28 16:51:19 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Allow Database#[]= to save docs
 
-[9b2ab26 | Thu Nov 27 21:57:39 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[9b2ab26 | Thu Nov 27 22:57:39 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Update gemspec, correct files
 
-[3c0541b | Thu Nov 27 21:11:22 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[3c0541b | Thu Nov 27 22:11:22 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Plugin functionality and pager plugin
 
-[22840cb | Thu Nov 27 21:10:57 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[22840cb | Thu Nov 27 22:10:57 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Allow layout :map => source, :reduce => source
 
-[ae9aeb5 | Thu Nov 27 21:10:08 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[ae9aeb5 | Thu Nov 27 22:10:08 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Model::view_with_docs to take advantage of include_docs
 
-[8a5e7ca | Thu Nov 27 18:30:48 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[8a5e7ca | Thu Nov 27 19:30:48 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Version 2008.11.27
 
-[753cfa7 | Thu Nov 27 18:26:28 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[753cfa7 | Thu Nov 27 19:26:28 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * add bin/sofa for quick debugging sessions
 
-[d2a0886 | Thu Nov 27 18:26:07 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[d2a0886 | Thu Nov 27 19:26:07 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Small refactor
 
-[b1bdaf0 | Tue Nov 25 18:44:05 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[b1bdaf0 | Tue Nov 25 19:44:05 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Enable cloning
 
-[09dea66 | Tue Nov 25 17:57:15 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[09dea66 | Tue Nov 25 18:57:15 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * add encode_attachments
 
-[3277f11 | Tue Nov 25 17:31:04 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[3277f11 | Tue Nov 25 18:31:04 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Adding MIT license
 
-[f6dd8ef | Tue Nov 25 17:30:35 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[f6dd8ef | Tue Nov 25 18:30:35 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Document some of Sofa::Server
 
-[3f0bc71 | Tue Nov 25 17:30:22 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[3f0bc71 | Tue Nov 25 18:30:22 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Make relations sane
 
-[041dfd1 | Tue Nov 25 17:29:57 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[041dfd1 | Tue Nov 25 18:29:57 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Expand and document Sofa::Database
 
-[032b958 | Tue Nov 25 17:29:01 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[032b958 | Tue Nov 25 18:29:01 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Better errors
 
-[0bd7246 | Fri Nov 21 20:07:47 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
+[0bd7246 | Fri Nov 21 21:07:47 UTC 2008] Michael Fellinger <m.fellinger@gmail.com>
 
   * Inaugral commit
 

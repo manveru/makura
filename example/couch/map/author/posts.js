@@ -1,5 +1,5 @@
 function(doc){
-  if(doc.type == 'Post' && doc.user){
-    emit(doc.user, doc);
+  if(doc.type == 'Post' && doc.author){
+    emit(doc.author, doc);
   }
 }

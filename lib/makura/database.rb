@@ -147,7 +147,7 @@ module Makura
     end
 
     def [](id, rev = nil)
-      id = Makura.escape(id)
+      # id = Makura.escape(id)
       if rev
         get(id, :rev => rev)
       else

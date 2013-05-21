@@ -26,6 +26,8 @@ require 'makura/uuid_cache'
 require 'makura/model'
 require 'makura/design'
 require 'makura/layout'
+require 'makura/filter'
+require 'makura/list'
 
 module Makura
   CHARS = (48..128).map{|c| c.chr}.grep(/[[:alnum:]]/)
@@ -78,6 +80,7 @@ module Makura
   end
 
   def constant(name, root = Module)
+    name.sub!(/^(.)/){ |m| "#{$1.upcase}"} # Required for databases such as '_users'
     name.split('::').inject(root){|s,v| s.const_get(v) }
   end
 end
